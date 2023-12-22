@@ -1,4 +1,4 @@
-import 'package:bestrateapp/screens/sign_in_screen.dart';
+import 'package:bestrateapp/screens/signin_with_mobile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 GestureDetector(
                   onTap: (){
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                      return SignInScreen();
+                      return SignInWithMobileScreen();
                     },),);
                   },
                   child: Text("Skip",style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
@@ -87,7 +87,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
                 onPressed: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                    return SignInScreen();
+                    return SignInWithMobileScreen();
                   },),);
                 },
                 style: ElevatedButton.styleFrom(
