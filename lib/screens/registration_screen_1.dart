@@ -1,3 +1,5 @@
+import 'package:bestrateapp/constant/best_rate_color_constant.dart';
+import 'package:bestrateapp/screens/registration_helper_class.dart';
 import 'package:flutter/material.dart';
 class RegistrationScreen1 extends StatefulWidget {
   const RegistrationScreen1({super.key});
@@ -7,6 +9,11 @@ class RegistrationScreen1 extends StatefulWidget {
 }
 
 class _RegistrationScreen1State extends State<RegistrationScreen1> {
+  List<Widget> registrationScreens = [
+    BuyerInformationScreen(),
+    BusinessDetails()
+  ];
+  int selectedPage = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,70 +41,46 @@ class _RegistrationScreen1State extends State<RegistrationScreen1> {
               ],
             ),
           ),
+          SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: registrationScreens.map((e) => Padding(
+              padding: const EdgeInsets.only(right: 10.0),
+              child: Container(
+                height: 4,
+                width: 80,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: selectedPage == registrationScreens.indexOf(e) ? BestRateColorConstant.appPrimaryColor : BestRateColorConstant.appSecondaryColor,
 
-          Container(
-            margin: EdgeInsets.only(top: 40),
-            child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)
-          ),
-          Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Column(
-                  children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          SizedBox(height: 300,
-                          child: Column(
-                            children: [
-                              Text("First Name"),
-                              TextField()
-                            ],
-                          ),)
-
-                        ],
-                      )
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 300,
-                      height: 100,
-                      padding: EdgeInsets.all(20),
-                      child: Text("Sumit"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 300,
-                      height: 100,
-                      padding: EdgeInsets.all(20),
-                      child: Text("Sumit"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 300,
-                      height: 100,
-                      padding: EdgeInsets.all(20),
-                      child: Text("Sumit"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 300,
-                      height: 100,
-                      padding: EdgeInsets.all(20),
-                      child: Text("Sumit"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.all(10),
-                      width: 300,
-                      height: 100,
-                      padding: EdgeInsets.all(20),
-                      child: Text("Sumit"),
-                    ),
-                  ],
                 ),
-              )
-          ),
+              ),
+            )).toList(
 
+            ),
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 8.0),
+          //   child: SizedBox(
+          //     height: 4,
+          //     child: Center(
+          //       child: ListView.builder(
+          //         scrollDirection: Axis.horizontal,
+          //         itemCount: registrationScreens.length,
+          //           itemBuilder: (context,index){
+          //         return Container(
+          //           width: 80,
+          //           decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.circular(10),
+          //             color: selectedPage == index ? BestRateColorConstant.appPrimaryColor : BestRateColorConstant.appSecondaryColor,
+          //
+          //           ),
+          //         );
+          //       }),
+          //     ),
+          //   ),
+          // ),
+          Expanded(child: registrationScreens[selectedPage])
         ],
       ),
     );
