@@ -39,16 +39,65 @@ class _RegistrationScreen1State extends State<RegistrationScreen1> {
             margin: EdgeInsets.only(top: 40),
             child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),)
           ),
-          SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.only(top: 30),
-              child: Row(
-                children: [
-                  TextField()
-                ],
-              ),
-            ),
-          )
+          Expanded(
+              child: SingleChildScrollView(
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    Container(
+                      child: Row(
+                        children: [
+                          SizedBox(height: 300,
+                          child: Column(
+                            children: [
+                              Text("First Name"),
+                              TextField()
+                            ],
+                          ),)
+
+                        ],
+                      )
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 300,
+                      height: 100,
+                      padding: EdgeInsets.all(20),
+                      child: Text("Sumit"),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 300,
+                      height: 100,
+                      padding: EdgeInsets.all(20),
+                      child: Text("Sumit"),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 300,
+                      height: 100,
+                      padding: EdgeInsets.all(20),
+                      child: Text("Sumit"),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 300,
+                      height: 100,
+                      padding: EdgeInsets.all(20),
+                      child: Text("Sumit"),
+                    ),
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      width: 300,
+                      height: 100,
+                      padding: EdgeInsets.all(20),
+                      child: Text("Sumit"),
+                    ),
+                  ],
+                ),
+              )
+          ),
+
         ],
       ),
     );
