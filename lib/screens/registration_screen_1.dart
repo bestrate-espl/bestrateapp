@@ -29,14 +29,13 @@ class _RegistrationScreen1State extends State<RegistrationScreen1> {
                   onTap: (){
                     Navigator.pop(context);
                   },
-                  child: Padding(padding: EdgeInsets.all(10),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20,10,0,0),
                     child: Image.asset('assets/images/arrow_back_image.png'),
                   ),
                 ),
-                Expanded(child: Center(
-                  child: Padding(padding: EdgeInsets.fromLTRB(0,10,0,0),
-                    child: Text("Create an Account", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Colors.black),),),
-                ),
+                Expanded(child: Padding(padding: EdgeInsets.fromLTRB(72,10,0,0),
+                  child: Text("Create an Account", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Colors.black),),),
                 ),
               ],
             ),
@@ -59,27 +58,6 @@ class _RegistrationScreen1State extends State<RegistrationScreen1> {
 
             ),
           ),
-          // Padding(
-          //   padding: const EdgeInsets.only(right: 8.0),
-          //   child: SizedBox(
-          //     height: 4,
-          //     child: Center(
-          //       child: ListView.builder(
-          //         scrollDirection: Axis.horizontal,
-          //         itemCount: registrationScreens.length,
-          //           itemBuilder: (context,index){
-          //         return Container(
-          //           width: 80,
-          //           decoration: BoxDecoration(
-          //             borderRadius: BorderRadius.circular(10),
-          //             color: selectedPage == index ? BestRateColorConstant.appPrimaryColor : BestRateColorConstant.appSecondaryColor,
-          //
-          //           ),
-          //         );
-          //       }),
-          //     ),
-          //   ),
-          // ),
           Expanded(child: registrationScreens[selectedPage])
         ],
       ),

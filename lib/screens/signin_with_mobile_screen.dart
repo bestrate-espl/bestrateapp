@@ -1,6 +1,8 @@
 import 'package:bestrateapp/screens/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import '../constant/best_rate_color_constant.dart';
 class SignInWithMobileScreen extends StatefulWidget {
   const SignInWithMobileScreen({super.key});
 
@@ -30,11 +32,11 @@ class _SignInWithMobileScreenState extends State<SignInWithMobileScreen> {
                     child: Text('Welcome!',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,),)
                 ),
                 const Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    child: Text('Enter your phone no to continue',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                    child: Text('Enter your phone no to continue',style: TextStyle(fontSize: 16,color: BestRateColorConstant.appSecondaryColor),)
                 ),
                 Padding(padding: EdgeInsets.fromLTRB(40, 16, 40, 0),
                     child: TextField(
-                      cursorColor: Color(0xFFA1A1A1),
+                      cursorColor: BestRateColorConstant.appSecondaryColor,
                       maxLines: 1,
                       maxLength: 10,
                       keyboardType: TextInputType.number,
@@ -45,7 +47,7 @@ class _SignInWithMobileScreenState extends State<SignInWithMobileScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10),
-                              borderSide: BorderSide(color: Color(0xFFA1A1A1))
+                              borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
                           )
                       ),
                     )
@@ -89,7 +91,7 @@ class _SignInWithMobileScreenState extends State<SignInWithMobileScreen> {
                         child: Column(
                             children : [
                               Padding(padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
-                                  child: Text('Dont have an account?',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                                  child: Text('Dont have an account?',style: TextStyle(fontSize: 16,color: BestRateColorConstant.appSecondaryColor),)
 
                               ),
                               Padding(padding: EdgeInsets.fromLTRB(0, 10, 0, 0),
@@ -105,7 +107,7 @@ class _SignInWithMobileScreenState extends State<SignInWithMobileScreen> {
                                       },),);
                                     },
                                     style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF7258DB),
+                                      backgroundColor: BestRateColorConstant.appPrimaryColor,
                                       foregroundColor: Colors.white,
                                       textStyle: TextStyle(fontSize: 16),
                                       elevation: 8,
