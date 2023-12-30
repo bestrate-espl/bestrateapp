@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../constant/best_rate_color_constant.dart';
+import '../controller/registration_controller.dart';
 
 class BuyerInformationScreen extends StatefulWidget {
   const BuyerInformationScreen({super.key});
@@ -12,254 +15,265 @@ class BuyerInformationScreen extends StatefulWidget {
 }
 
 class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
+  final registrationController = Get.find<RegistrationController>();
+
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-           Center(
-             child: Padding(
-               padding: const EdgeInsets.only(top: 30),
-               child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),),
-             ),
-           ),
-           Padding(
-             padding: const EdgeInsets.fromLTRB(20,30,20,0),
-             child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-               children: [
-                 Container(
-                   width: 170,
-                     child: Text("First Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
-                 Container(
-                   width: 170,
-                     child: Text("Last Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)))
-               ],
-             ),
-           ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,10,20,0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    width: 170,
-                      child: TextField(
-                        cursorColor: BestRateColorConstant.appSecondaryColor,
-                        maxLines: 1,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                            hintText: "Enter",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
-                            )
-                        ),
-                      )),
-
-                  Container(
-                      width: 170,
-                      child: TextField(
-                        cursorColor: BestRateColorConstant.appSecondaryColor,
-                        maxLines: 1,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                            hintText: "Enter",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10)
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
-                            )
-                        ),
-                      ))
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,30,20,0),
-              child: Row(
-                children: [
-                  Container(
-                      child: Text("Email Address*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,10,20,0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                        child: TextField(
-                          cursorColor: BestRateColorConstant.appSecondaryColor,
-                          maxLines: 1,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            hintText: "Enter",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
-                              )
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,30,20,0),
-              child: Row(
-                children: [
-                  Container(
-                      child: Text("Mobile Number*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,10,20,0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                        child: TextField(
-                          cursorColor: BestRateColorConstant.appSecondaryColor,
-                          maxLines: 1,
-                          maxLength: 10,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              hintText: "Enter",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
-                              )
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,10,20,0),
-              child: Row(
-                children: [
-                  Container(
-                      child: Text("Area*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,10,20,0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                        child: TextField(
-                          cursorColor: BestRateColorConstant.appSecondaryColor,
-                          maxLines: 1,
-                          decoration: InputDecoration(
-                              suffixIcon: Image.asset('assets/images/arrow_drop_down_circle.png'),
-                              hintText: "Enter",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
-                              )
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,30,20,0),
-              child: Row(
-                children: [
-                  Container(
-                      child: Text("Pin Code*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
-                ],
-              ),
-            ),
-
-            Padding(
-              padding: const EdgeInsets.fromLTRB(20,10,20,0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                        child: TextField(
-                          cursorColor: BestRateColorConstant.appSecondaryColor,
-                          maxLines: 1,
-                          maxLength: 6,
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                              hintText: "Enter",
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
-                              )
-                          ),
-                        )),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(20,30,20,20),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints.tightFor(width: 370, height: 55),
-
-                  child: ElevatedButton(
-                    child: Text("Next"),
-
-                    onPressed: () {
-                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                      //   return SignInWithMobileScreen();
-                      // },),);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF7258DB),
-                      foregroundColor: Colors.white,
-                      textStyle: TextStyle(fontSize: 18),
-                      elevation: 8,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)
-                      ),
-
-                    ),
+    return Column(
+      children: [
+        Center(
+          child: Padding(
+            padding: const EdgeInsets.only(top: 30),
+            child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),),
+          ),
+        ),
+        Expanded(child:  SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // Center(
+                //   child: Padding(
+                //     padding: const EdgeInsets.only(top: 30),
+                //     child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),),
+                //   ),
+                // ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,30,20,0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                          width: 170,
+                          child: Text("First Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                      Container(
+                          width: 170,
+                          child: Text("Last Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)))
+                    ],
                   ),
                 ),
-              ),
-            )
-          ],
-        ),
-      ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                          width: 170,
+                          child: TextField(
+                            cursorColor: BestRateColorConstant.appSecondaryColor,
+                            maxLines: 1,
+                            keyboardType: TextInputType.name,
+                            decoration: InputDecoration(
+                                hintText: "Enter",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
+                                )
+                            ),
+                          )),
+
+                      Container(
+                          width: 170,
+                          child: TextField(
+                            cursorColor: BestRateColorConstant.appSecondaryColor,
+                            maxLines: 1,
+                            keyboardType: TextInputType.name,
+                            decoration: InputDecoration(
+                                hintText: "Enter",
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
+                                )
+                            ),
+                          ))
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,30,20,0),
+                  child: Row(
+                    children: [
+                      Container(
+                          child: Text("Email Address*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                            child: TextField(
+                              cursorColor: BestRateColorConstant.appSecondaryColor,
+                              maxLines: 1,
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                  hintText: "Enter",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
+                                  )
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,30,20,0),
+                  child: Row(
+                    children: [
+                      Container(
+                          child: Text("Mobile Number*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                            child: TextField(
+                              cursorColor: BestRateColorConstant.appSecondaryColor,
+                              maxLines: 1,
+                              maxLength: 10,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  hintText: "Enter",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
+                                  )
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                  child: Row(
+                    children: [
+                      Container(
+                          child: Text("Area*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                            child: TextField(
+                              cursorColor: BestRateColorConstant.appSecondaryColor,
+                              maxLines: 1,
+                              decoration: InputDecoration(
+                                  suffixIcon: Image.asset('assets/images/arrow_drop_down_circle.png'),
+                                  hintText: "Enter",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
+                                  )
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,30,20,0),
+                  child: Row(
+                    children: [
+                      Container(
+                          child: Text("Pin Code*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                            child: TextField(
+                              cursorColor: BestRateColorConstant.appSecondaryColor,
+                              maxLines: 1,
+                              maxLength: 6,
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                  hintText: "Enter",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide: BorderSide(color: BestRateColorConstant.appSecondaryColor)
+                                  )
+                              ),
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20,30,20,20),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints.tightFor(width: 370, height: 55),
+
+                      child: ElevatedButton(
+                        child: Text("Next"),
+
+                        onPressed: () {
+                          registrationController.updateRegistrationPage(1);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF7258DB),
+                          foregroundColor: Colors.white,
+                          textStyle: TextStyle(fontSize: 18),
+                          elevation: 8,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),)
+
+      ],
     );
   }
 }
@@ -272,6 +286,8 @@ class BusinessDetails extends StatefulWidget {
 }
 
 class _BusinessDetailsState extends State<BusinessDetails> {
+  final registrationController = Get.find<RegistrationController>();
+
   String selectedValue = 'Option 1';
   bool isChecked = false;
   @override

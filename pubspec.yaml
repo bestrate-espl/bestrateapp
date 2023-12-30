@@ -39,6 +39,7 @@ dependencies:
   smooth_page_indicator: ^1.0.0
   shared_preferences: ^2.0.12
   pin_code_fields: ^7.3.0
+  get: ^4.6.6
 
 dev_dependencies:
   flutter_test:
