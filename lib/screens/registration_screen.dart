@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
-class RegistrationScreen1 extends StatefulWidget {
-  const RegistrationScreen1({super.key});
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  State<RegistrationScreen1> createState() => _RegistrationScreen1State();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
-class _RegistrationScreen1State extends State<RegistrationScreen1> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   List<Widget> registrationScreens = [
     BuyerInformationScreen(),
     BusinessDetails()

@@ -1,4 +1,4 @@
-import 'package:bestrateapp/screens/otp_screen.dart';
+import 'package:bestrateapp/screens/otp_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

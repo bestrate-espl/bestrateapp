@@ -1,5 +1,5 @@
 
-import 'package:bestrateapp/screens/registration_screen_1.dart';
+import 'package:bestrateapp/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -47,7 +47,7 @@ class _OTPScreenState extends State<OTPScreen> {
               child: Column(
                 children: [
                   const Padding(padding: EdgeInsets.all(10),
-                      child: Text('An outhentication code has been sent to',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                      child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
                   ),
                   const Padding(padding: EdgeInsets.all(5),
                       child: Text('+91 1234567890',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
@@ -93,7 +93,7 @@ class _OTPScreenState extends State<OTPScreen> {
                         child: Text("Submit"),
                         onPressed: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return RegistrationScreen1();
+                            return RegistrationScreen();
                           }));
                         },
                         style: ElevatedButton.styleFrom(
