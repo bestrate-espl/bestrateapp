@@ -15,31 +15,66 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   var currentPage  = DrawerSection.myprofile;
+  var drawerKey = GlobalKey<ScaffoldState>();
+  var titleName = "My Profile";
   @override
   Widget build(BuildContext context) {
     var container;
     if (currentPage == DrawerSection.myprofile){
       container = MyProfile();
+      titleName = "My profile";
     }else if (currentPage == DrawerSection.aboutus){
       container = AboutUs();
-    }else if (currentPage == DrawerSection.aboutus){
+      titleName = "About Us";
+    }else if (currentPage == DrawerSection.termscondition){
       container = TermsConditions();
-    }else if (currentPage == DrawerSection.aboutus){
+      titleName = "Terms & Conditions";
+    }else if (currentPage == DrawerSection.privacypolicy){
       container = PrivacyPolicy();
+      titleName = "Privacy Policy";
+    }else if (currentPage == DrawerSection.signout){
+      container = Container();
     }
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: Text("Home"),
-        backgroundColor: BestRateColorConstant.appPrimaryColor,),
-        body: container,
-        drawer: Drawer(
-          child: Container(
+        key: drawerKey,
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                MyHeaderDrawer(),
-                MyDrawerList()
+                Row(
+                  children: [
+                    SizedBox(
+                      height: 25,
+                        width: 25,
+                        child: InkWell(
+                          onTap: (){
+                            drawerKey.currentState!.openDrawer();
+                          },
+                            child: Image.asset('assets/images/menu.png')),),
+                    Expanded(
+                        child: Center(
+                            child: Text(titleName,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18, color: Colors.black),)))
+                  ],
+                ),
+                Expanded(child: container)
               ],
+            ),
+          ),
+        ),
+        drawer: Theme(
+          data: Theme.of(context).copyWith(
+            iconTheme: IconThemeData(color: Colors.black)
+          ), child: Drawer(
+            child: Container(
+              child: Column(
+                children: [
+                  MyHeaderDrawer(),
+                  MyDrawerList()
+                ],
+              ),
             ),
           ),
         ),
@@ -67,7 +102,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       // color: selected ? Colors.grey[300] : Colors.transparent,
       child: InkWell(
         onTap: (){
-          Navigator.pop(context);
           setState(() {
             if (id == 1){
               currentPage = DrawerSection.myprofile;
@@ -78,9 +112,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             }else if (id == 4){
               currentPage = DrawerSection.privacypolicy;
             }else if (id == 5){
-              currentPage = DrawerSection.signout;
+              _showAlert(context);
             }
           });
+          drawerKey.currentState!.closeDrawer();
         },
         child: Padding(
           padding: EdgeInsets.all(15.0),
@@ -97,6 +132,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
+    );
+  }
+  void _showAlert(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Alert Title'),
+          content: Text('This is the alert message.'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }
