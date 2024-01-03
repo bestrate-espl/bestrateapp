@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bestrateapp/screens/dashboard_screen.dart';
 import 'package:bestrateapp/screens/on_boarding_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
