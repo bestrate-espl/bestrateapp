@@ -1,4 +1,4 @@
-import 'package:bestrateapp/screens/signin_with_mobile_screen.dart';
+import 'package:bestrateapp/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -52,10 +52,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 GestureDetector(
                   onTap: (){
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                      return SignInWithMobileScreen();
+                      return SignInScreen();
                     },),);
                   },
-                  child: Text("Skip",style: TextStyle(color: Colors.black, fontSize: 18, fontWeight: FontWeight.bold),
+                  child: Text("Skip",style: TextStyle(color: Colors.black, fontSize: 16,
+                      fontFamily: 'GTWalsheimPro',
+                      fontWeight: FontWeight.w700),
                   textAlign: TextAlign.right,),
                 ),
               ],
@@ -83,17 +85,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               constraints: BoxConstraints.tightFor(width: 350, height: 55),
 
               child: ElevatedButton(
-                child: Text("Get Started"),
+                child: Text("Get Started", ),
 
                 onPressed: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                    return SignInWithMobileScreen();
+                    return SignInScreen();
                   },),);
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF7258DB),
                   foregroundColor: Colors.white,
-                  textStyle: TextStyle(fontSize: 18),
+                  textStyle: TextStyle(fontSize: 16,
+                    fontFamily: 'GTWalsheimPro',
+                    fontWeight: FontWeight.w500,),
                   elevation: 8,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)
@@ -118,7 +122,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
-                  textStyle: TextStyle(fontSize: 18),
+                  textStyle: TextStyle(fontSize: 16,
+                    fontFamily: 'GTWalsheimPro',
+                    fontWeight: FontWeight.w500,),
                   elevation: 8,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10)

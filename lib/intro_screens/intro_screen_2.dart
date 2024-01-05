@@ -20,13 +20,18 @@ class _IntroScreen2State extends State<IntroScreen2> {
             ),
 
             Container(
-              child: Text("Headline 2", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'GT Walsheim Pro'),),
+              child: Text("Headline 2", style: TextStyle(color: Colors.black, fontSize: 20,
+                fontFamily: 'GTWalsheimPro',
+                fontWeight: FontWeight.w700,),),
             ),
             Container(
               padding: EdgeInsets.fromLTRB(40, 30, 40, 0),
               child: Center(
                 child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.", style: TextStyle(
-                  color: Colors.black, fontSize: 16,
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontFamily: 'GTWalsheimPro',
+                  fontWeight: FontWeight.w400,
                 ),textAlign: TextAlign.center,),
               ),
             )

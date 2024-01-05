@@ -39,8 +39,16 @@ class _MyHeaderDrawerState extends State<MyHeaderDrawer> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Sumit Ranjan", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.white),),
-                  Text("sumit@gmail.com", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 18, color: Colors.white),),
+                  Text("Sumit Ranjan", style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'GTWalsheimPro',
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white),),
+                  Text("sumit@gmail.com", style: TextStyle(
+                      fontSize: 16,
+                      fontFamily: 'GTWalsheimPro',
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),),
                 ],
               ),
             ),

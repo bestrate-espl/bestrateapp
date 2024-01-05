@@ -27,7 +27,10 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
           Center(
             child: Padding(
               padding: const EdgeInsets.only(top: 30),
-              child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),),
+              child: Text("1. Buyer Information Details", style: TextStyle(fontSize: 18,
+                  fontFamily: 'GTWalsheimPro',
+                  fontWeight: FontWeight.w700,
+                  color: BestRateColorConstant.darkBlack),),
             ),
           ),
           Expanded(child:  SingleChildScrollView(
@@ -50,10 +53,18 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                       children: [
                         Container(
                             width: 170,
-                            child: Text("First Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                            child: Text("First Name", style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),)),
                         Container(
                             width: 170,
-                            child: Text("Last Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black)))
+                            child: Text("Last Name", style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack)))
                       ],
                     ),
                   ),
@@ -105,7 +116,11 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                     child: Row(
                       children: [
                         Container(
-                            child: Text("Email Address*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                            child: Text("Email Address*", style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),)),
                       ],
                     ),
                   ),
@@ -141,7 +156,11 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                     child: Row(
                       children: [
                         Container(
-                            child: Text("Mobile Number*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                            child: Text("Mobile Number*", style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),)),
                       ],
                     ),
                   ),
@@ -178,7 +197,11 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                     child: Row(
                       children: [
                         Container(
-                            child: Text("Area*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                            child: Text("Area*", style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),)),
                       ],
                     ),
                   ),
@@ -214,7 +237,11 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                     child: Row(
                       children: [
                         Container(
-                            child: Text("Pin Code*", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                            child: Text("Pin Code*", style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),)),
                       ],
                     ),
                   ),
@@ -252,7 +279,12 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                         constraints: BoxConstraints.tightFor(width: 370, height: 55),
 
                         child: ElevatedButton(
-                          child: Text("Next"),
+                          child: Text("Next", style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'GTWalsheimPro',
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white
+                          ),),
 
                           onPressed: () {
                             registrationController.updateRegistrationPage(1);
@@ -308,7 +340,10 @@ class _BusinessDetailsState extends State<BusinessDetails> {
               Center(
                 child: Padding(
                   padding: const EdgeInsets.only(top: 30),
-                  child: Text("2. Business Details", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black),),
+                  child: Text("2. Business Details", style: TextStyle(fontSize: 18,
+                      fontFamily: 'GTWalsheimPro',
+                      fontWeight: FontWeight.w700,
+                      color: BestRateColorConstant.darkBlack),),
                 ),
               ),
               Padding(
@@ -321,7 +356,11 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                       child: Row(
                         children: [
                           Container(
-                              child: Text("Are you a Business?", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                              child: Text("Are you a Business?", style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'GTWalsheimPro',
+                                  fontWeight: FontWeight.w500,
+                                  color: BestRateColorConstant.darkBlack),)),
                         ],
                       ),
                     ),
@@ -341,7 +380,11 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                               },
                               activeColor: Colors.black,
                             ),
-                            Text('Yes', style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),),
+                            Text('Yes', style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),),
 
                             // Radio button for Option 2
                             Radio(
@@ -354,7 +397,11 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                               },
                               activeColor: Colors.black,
                             ),
-                            Text('No' , style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),),
+                            Text('No' , style: TextStyle(
+                                fontSize: 18,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w500,
+                                color: BestRateColorConstant.darkBlack),),
 
                             // Display the selected value
                             // SizedBox(width: 20.0),
@@ -368,7 +415,11 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                       child: Row(
                         children: [
                           Container(
-                              child: Text("Business Name", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                              child: Text("Business Name", style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'GTWalsheimPro',
+                                  fontWeight: FontWeight.w500,
+                                  color: BestRateColorConstant.darkBlack),)),
                         ],
                       ),
                     ),
@@ -404,7 +455,11 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                       child: Row(
                         children: [
                           Container(
-                              child: Text("GSTIN", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: Colors.black),)),
+                              child: Text("GSTIN", style: TextStyle(
+                                  fontSize: 18,
+                                  fontFamily: 'GTWalsheimPro',
+                                  fontWeight: FontWeight.w500,
+                                  color: BestRateColorConstant.darkBlack),)),
                         ],
                       ),
                     ),
@@ -453,11 +508,17 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                               children: [
                                 TextSpan(
                                   text: 'I agree to the ',
-                                  style: TextStyle(color: Colors.black),
+                                  style: TextStyle(fontSize: 14,
+                                      fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w400,
+                                      color: BestRateColorConstant.darkBlack),
                                 ),
                                 TextSpan(
                                   text: 'Terms of Use',
                                   style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w400,
                                     color: BestRateColorConstant.appPrimaryColor,
                                     decoration: TextDecoration.underline,
                                   ),
@@ -471,11 +532,19 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                                 ),
                                 TextSpan(
                                   text: ' and ',
-                                  style: TextStyle(color: Colors.black),
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w400,
+                                      color: BestRateColorConstant.darkBlack
+                                  ),
                                 ),
                                 TextSpan(
                                   text: 'Privacy Policy',
                                   style: TextStyle(
+                                    fontSize: 14,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w400,
                                     color: BestRateColorConstant.appPrimaryColor,
                                     decoration: TextDecoration.underline,
                                   ),
@@ -506,7 +575,13 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                           constraints: BoxConstraints.tightFor(width: 370, height: 55),
 
                           child: ElevatedButton(
-                            child: Text("Sign Up"),
+                            child: Text("Sign Up",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontFamily: 'GTWalsheimPro',
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),),
 
                             onPressed: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context){

@@ -49,9 +49,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   Expanded(
                     child: Padding(padding: EdgeInsets.fromLTRB(72, 10, 0, 0),
                       child: Text("Create an Account", style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),),),
+                          fontSize: 20,
+                          fontFamily: 'GTWalsheimPro',
+                          fontWeight: FontWeight.w700,
+                          color: BestRateColorConstant.darkBlack),),),
                   ),
                 ],
               ),

@@ -11,7 +11,8 @@ class OtpRegistrationScreen extends StatefulWidget {
 }
 
 class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
-  TextEditingController _controller = TextEditingController();
+  TextEditingController _controllerMobile = TextEditingController();
+  TextEditingController _controllerEmail = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +34,10 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                 ),
                 Expanded(child: Center(
                   child: Padding(padding: EdgeInsets.all(10),
-                    child: Text("OTP Authentication", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Colors.black),),),
+                    child: Text("OTP Authentication", style: TextStyle(fontSize: 20,
+                        fontFamily: 'GTWalsheimPro',
+                        fontWeight: FontWeight.w700,
+                        color: BestRateColorConstant.darkBlack),),),
                 ),
                 )
               ],
@@ -55,21 +59,31 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                         child: Column(
                           children: [
                             const Padding(padding: EdgeInsets.only(top: 20),
-                                child: Text('Mobile Number Verification',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),)
+                                child: Text('Mobile Number Verification',style: TextStyle(fontSize: 16,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w700,
+                                    color: BestRateColorConstant.darkBlack),)
                             ),
                             const Padding(padding: EdgeInsets.only(top: 20),
-                                child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                                child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w400,
+                                    color: BestRateColorConstant.darkBlack),)
                             ),
                             const Padding(padding: EdgeInsets.only(top: 2),
-                                child: Text('+91 1234567890',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                                child: Text('+91 1234567890',style: TextStyle(fontSize: 16,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w400,
+                                    color: BestRateColorConstant.darkBlack),)
                             ),
                             Padding(padding: EdgeInsets.fromLTRB(50,40,50,0),
                               child: PinCodeTextField(
                                 appContext: context,
-                                controller: _controller,
+                                controller: _controllerMobile,
                                 length: 4,
                                 cursorHeight: 19,
                                 enableActiveFill: true,
+                                keyboardType: TextInputType.number,
                                 textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                 pinTheme: PinTheme(
@@ -92,8 +106,13 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Don't received the code? ", style: TextStyle(fontSize: 16),),
-                                  Text("Resend", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                                  Text("Don't received the code? ", style: TextStyle(fontSize: 16,
+                                      fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w400,
+                                      color: BestRateColorConstant.darkBlack),),
+                                  Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w700,
+                                      color: BestRateColorConstant.darkBlack),)
                                 ],
                               ),),
                           ],
@@ -112,21 +131,32 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                         child: Column(
                           children: [
                             const Padding(padding: EdgeInsets.only(top: 20),
-                                child: Text('Email Address Verification',style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold,color: Colors.black),)
+                                child: Text('Email Address Verification',style: TextStyle(
+                                    fontSize: 16,  fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w700,
+                                    color: BestRateColorConstant.darkBlack),)
                             ),
                             const Padding(padding: EdgeInsets.only(top: 20),
-                                child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                                child: Text('An authentication code has been sent to',style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w400,
+                                    color: BestRateColorConstant.darkBlack),)
                             ),
                             const Padding(padding: EdgeInsets.only(top: 2),
-                                child: Text('jhon@gmail.com',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                                child: Text('jhon@gmail.com',style: TextStyle(fontSize: 16,
+                                    fontFamily: 'GTWalsheimPro',
+                                    fontWeight: FontWeight.w400,
+                                    color: BestRateColorConstant.darkBlack),)
                             ),
                             Padding(padding: EdgeInsets.fromLTRB(50,40,50,0),
                               child: PinCodeTextField(
                                 appContext: context,
-                                controller: _controller,
+                                controller: _controllerEmail,
                                 length: 4,
                                 cursorHeight: 19,
                                 enableActiveFill: true,
+                                keyboardType: TextInputType.number,
                                 textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                                 inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                 pinTheme: PinTheme(
@@ -149,8 +179,13 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Don't received the code? ", style: TextStyle(fontSize: 16),),
-                                  Text("Resend", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                                  Text("Don't received the code? ", style: TextStyle(fontSize: 16,
+                                      fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w400,
+                                      color: BestRateColorConstant.darkBlack),),
+                                  Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w700,
+                                      color: BestRateColorConstant.darkBlack),)
                                 ],
                               ),),
                           ],
@@ -164,7 +199,12 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                       constraints: BoxConstraints.tightFor(width: 350, height: 55),
 
                       child: ElevatedButton(
-                        child: Text("Submit"),
+                        child: Text("Submit", style: TextStyle(
+                            fontSize: 18,
+                            fontFamily: 'GTWalsheimPro',
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white
+                        ),),
                         onPressed: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context){
                             return DashboardScreen();

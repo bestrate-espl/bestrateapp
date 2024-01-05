@@ -1,4 +1,6 @@
 
+import 'package:bestrateapp/constant/best_rate_color_constant.dart';
+import 'package:bestrateapp/screens/dashboard_screen.dart';
 import 'package:bestrateapp/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +36,10 @@ class _OTPScreenState extends State<OTPScreen> {
                   ),
                   Expanded(child: Center(
                     child: Padding(padding: EdgeInsets.all(10),
-                       child: Text("OTP Authentication", style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold, color: Colors.black),),),
+                       child: Text("OTP Authentication", style: TextStyle(fontSize: 20,
+                           fontFamily: 'GTWalsheimPro',
+                           fontWeight: FontWeight.w700,
+                           color: BestRateColorConstant.darkBlack),),),
                     ),
                   )
 
@@ -47,10 +52,16 @@ class _OTPScreenState extends State<OTPScreen> {
               child: Column(
                 children: [
                   const Padding(padding: EdgeInsets.all(10),
-                      child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                      child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,
+                          fontFamily: 'GTWalsheimPro',
+                          fontWeight: FontWeight.w400,
+                          color: BestRateColorConstant.darkBlack),)
                   ),
-                  const Padding(padding: EdgeInsets.all(5),
-                      child: Text('+91 1234567890',style: TextStyle(fontSize: 16,color: Color(0xFFA1A1A1)),)
+                  const Padding(padding: EdgeInsets.all(0),
+                      child: Text('+91 1234567890',style: TextStyle(fontSize: 16,
+                          fontFamily: 'GTWalsheimPro',
+                          fontWeight: FontWeight.w400,
+                          color: BestRateColorConstant.darkBlack),)
                   ),
                   Padding(padding: EdgeInsets.fromLTRB(50,40,50,0),
                    child: PinCodeTextField(
@@ -59,6 +70,7 @@ class _OTPScreenState extends State<OTPScreen> {
                     length: 4,
                     cursorHeight: 19,
                     enableActiveFill: true,
+                    keyboardType: TextInputType.number,
                     textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     pinTheme: PinTheme(
@@ -81,8 +93,13 @@ class _OTPScreenState extends State<OTPScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't received the code? ", style: TextStyle(fontSize: 16),),
-                      Text("Resend", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)
+                      Text("Don't received the code? ", style: TextStyle(fontSize: 16,
+                          fontFamily: 'GTWalsheimPro',
+                          fontWeight: FontWeight.w400,
+                          color: BestRateColorConstant.darkBlack),),
+                      Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
+                          fontWeight: FontWeight.w700,
+                          color: BestRateColorConstant.darkBlack),)
                     ],
                   ),),
                   Padding(padding: EdgeInsets.fromLTRB(0, 40, 0, 0),
@@ -90,10 +107,13 @@ class _OTPScreenState extends State<OTPScreen> {
                       constraints: BoxConstraints.tightFor(width: 350, height: 55),
 
                       child: ElevatedButton(
-                        child: Text("Submit"),
+                        child: Text("Submit", style: TextStyle(fontSize: 18,
+                            fontFamily: 'GTWalsheimPro',
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),),
                         onPressed: (){
                           Navigator.push(context, MaterialPageRoute(builder: (context){
-                            return RegistrationScreen();
+                            return DashboardScreen();
                           }));
                         },
                         style: ElevatedButton.styleFrom(

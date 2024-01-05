@@ -1,3 +1,4 @@
+import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:flutter/material.dart';
 class IntroScreen1 extends StatefulWidget {
   const IntroScreen1({super.key});
@@ -20,13 +21,17 @@ class _IntroScreen1State extends State<IntroScreen1> {
             ),
 
             Container(
-              child: Text("Headline 1", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold, fontFamily: 'GT Walsheim Pro'),),
+              child: Text("Headline 1", style: TextStyle(color: BestRateColorConstant.darkBlack, fontSize: 20,
+                  fontFamily: 'GTWalsheimPro',
+                  fontWeight: FontWeight.w700,),),
             ),
             Container(
               padding: EdgeInsets.fromLTRB(40, 30, 40, 0),
               child: Center(
                 child: Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.", style: TextStyle(
-                  color: Colors.black, fontSize: 16,
+                  fontFamily: 'GTWalsheimPro',
+                  fontWeight: FontWeight.w400,
+                  color: BestRateColorConstant.darkBlack, fontSize: 16,
                 ),textAlign: TextAlign.center,),
               ),
             )

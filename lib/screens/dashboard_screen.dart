@@ -37,13 +37,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.white,
         key: drawerKey,
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Column(
-              children: [
-                Row(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(22),
+                child: Row(
                   children: [
                     SizedBox(
                       height: 25,
@@ -55,12 +56,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: Image.asset('assets/images/menu.png')),),
                     Expanded(
                         child: Center(
-                            child: Text(titleName,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18, color: Colors.black),)))
+                            child: Text(titleName,style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'GTWalsheimPro',
+                                fontWeight: FontWeight.w700,
+                                color: BestRateColorConstant.darkBlack),)))
                   ],
                 ),
-                Expanded(child: container ?? Home()),
-              ],
-            ),
+              ),
+              Expanded(
+                  child: container ?? Home()),
+            ],
           ),
         ),
         /*Side Navigation Bar*/
@@ -173,7 +179,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Column(
                 children: [
                   Image.asset(pagesName[index]['selectedImage'] ?? "",height: isSelected ? 24 : 24,
-                    color: isSelected ? Colors.white : Colors.black,),
+                    color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,),
                   // PlumImageAsset(
                   //   image: isSelected
                   //       ? indexPageController.pagesName[index]['selectedImage']
@@ -183,7 +189,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   //   isRepeat: true,
                   // ),
                   SizedBox(height: 6),
-                  Text(pagesName[index]['name'] ?? "",style: TextStyle(fontSize: 11, fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,color: isSelected ? Colors.white : Colors.black,))
+                  Text(pagesName[index]['name'] ?? "",style: TextStyle(
+                    fontSize: 14,
+                    fontFamily: 'GTWalsheimPro',
+                    fontWeight: isSelected ? FontWeight.w500 : FontWeight.w500,color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,))
                   // PlumText(
                   //   indexPageController.pagesName[index]['name']!,
                   //   color: isSelected ? PlumColorConstant.appPrimaryColor : PlumColorConstant.lightGreyColor,
@@ -230,7 +239,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Text(
                     title,
                     style: TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.w500, color: Colors.black),))
+                        fontSize: 18,
+                        fontFamily: 'GTWalsheimPro',
+                        fontWeight: FontWeight.w400,
+                        color: BestRateColorConstant.darkBlack),))
             ],
           ),
         ),
