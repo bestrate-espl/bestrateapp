@@ -21,7 +21,7 @@ class _SignInScreenState extends State<SignInScreen> {
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 150),
+              padding: const EdgeInsets.only(top: 80),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -121,7 +121,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         alignment: Alignment.bottomCenter,
                         child: Column(
                             children : [
-                              Padding(padding: EdgeInsets.fromLTRB(0, 100, 0, 0),
+                              Padding(padding: EdgeInsets.fromLTRB(0, 150, 0, 0),
                                   child: Text("Don't have an account?",style: TextStyle(fontSize: 16,
                                       color: BestRateColorConstant.darkBlack,
                                     fontFamily: 'GTWalsheimPro',
