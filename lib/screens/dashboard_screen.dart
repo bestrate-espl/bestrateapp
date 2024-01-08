@@ -29,7 +29,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Map<String, String>> pagesName = <Map<String, String>>[
     {'image': 'assets/images/home.png', 'name': 'Home', 'selectedImage': 'assets/images/home.png'},
     {'image': 'assets/images/contract_edit.png', 'name': 'Create Inquiry', 'selectedImage': 'assets/images/contract_edit.png'},
-    {'image': 'assets/images/list_alt.png', 'name': 'My Inquiry', 'selectedImage': 'assets/images/list_alt.png'}
+    {'image': 'assets/images/list_alt.png', 'name': 'My Inquiries', 'selectedImage': 'assets/images/list_alt.png'}
   ];
   @override
   Widget build(BuildContext context) {
@@ -156,7 +156,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       titleName = "Create Inquiry";
     }else if (selectedIndex == 2){
       container = MyInquiry();
-      titleName = "My Inquiry";
+      titleName = "My Inquiries";
     }
     setState(() {
     });
