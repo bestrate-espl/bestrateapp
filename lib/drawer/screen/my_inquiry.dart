@@ -50,7 +50,7 @@ class _MyInquiryState extends State<MyInquiry> {
                           // }));
                         },
                         child: Container(
-                          width: 370,
+                          width: MediaQuery.of(context).size.width * 0.9,
                           height: 150,
                           decoration: BoxDecoration(
                             color: BestRateColorConstant.cardBg,

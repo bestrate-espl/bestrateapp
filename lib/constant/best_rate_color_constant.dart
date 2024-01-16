@@ -7,5 +7,7 @@ class BestRateColorConstant{
   static const Color green = Color(0xFF01B576);
   static const Color darkBlack = Color(0xFF1C1C1C);
   static const Color cardBg = Color(0xFFF6F6F6);
+  static const Color darkTextBlack = Color(0xFF1C1C1C);
+  static const Color darkRed = Color(0xFFC53A3A);
 
 }

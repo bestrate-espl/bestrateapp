@@ -1,3 +1,6 @@
+import 'package:bestrateapp/tab_screens/accept.dart';
+import 'package:bestrateapp/tab_screens/all.dart';
+import 'package:bestrateapp/tab_screens/reject.dart';
 import 'package:flutter/material.dart';
 
 import '../../constant/best_rate_color_constant.dart';
@@ -9,14 +12,33 @@ class ViewInquiryDetails extends StatefulWidget {
   State<ViewInquiryDetails> createState() => _ViewInquiryDetailsState();
 }
 
-class _ViewInquiryDetailsState extends State<ViewInquiryDetails> {
+class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTickerProviderStateMixin {
   List<InquiriesModel> inqModel = [
     InquiriesModel(inquiriesName: "Paper"),
     InquiriesModel(inquiriesName: "Tissue Paper"),
   ];
+  late TabController _tabController;
+  final List<Tab> _tabs = [
+    Tab(text: "All"),
+    Tab(text: "Accept"),
+    Tab(text: "Reject"),
+  ];
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Column(
         children: [
           Container(
@@ -236,6 +258,53 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> {
                             ],
                           ),
                         ),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(20,0,20,0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: BestRateColorConstant.lightGray,
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)
+                              )
+                            ),
+
+                            child: TabBar(
+                              controller: _tabController,
+                              labelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w700,fontFamily: 'GTWalsheimPro',color: Colors.white),
+                              unselectedLabelColor: BestRateColorConstant.appSecondaryColor,
+                              tabs: _tabs,
+                              indicatorSize: TabBarIndicatorSize.tab,
+                              indicator: BoxDecoration(
+                                color: BestRateColorConstant.appPrimaryColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(20),
+                                    topRight: Radius.circular(20)
+                                )
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]
+                    ),
+                    Container(
+                      width: double.maxFinite,
+                      height: 3,
+                      color: BestRateColorConstant.appPrimaryColor,
+                    ),
+                    Container(
+                      height: 300,
+                      child: TabBarView(
+                        controller: _tabController,
+                        children: [
+                          TabAll(),
+                          TabAccept(),
+                          TabReject()
+                        ],
                       ),
                     )
                   ],
