@@ -50,7 +50,7 @@ class _MyInquiryState extends State<MyInquiry> {
                           // }));
                         },
                         child: Container(
-                          width: MediaQuery.of(context).size.width * 0.9,
+                          width: 350,
                           height: 150,
                           decoration: BoxDecoration(
                             color: BestRateColorConstant.cardBg,
@@ -80,7 +80,7 @@ class _MyInquiryState extends State<MyInquiry> {
                                   height: 35,
                                   child: ListView.builder(itemBuilder: (context, index) {
                                     return Padding(
-                                      padding: const EdgeInsets.all(3),
+                                      padding: const EdgeInsets.all(1),
                                       child: Container(
                                         decoration: BoxDecoration(
                                             color: BestRateColorConstant.darkBlack,

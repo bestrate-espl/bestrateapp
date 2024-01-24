@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:bestrateapp/screens/dashboard_screen.dart';
 import 'package:bestrateapp/screens/on_boarding_screen.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:webview_flutter/webview_flutter.dart';
+// import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
-import '../best_rate_web_view.dart';
+// import '../best_rate_web_view.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -17,13 +15,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  late final WebViewController _controller;
+  // late final WebViewController _controller;
   @override
   void initState(){
     super.initState();
-    _controller = WebViewController()..loadRequest(
-      Uri.parse('https://bestrate.encureit.com/'),
-    );
+    // _controller = WebViewController()..loadRequest(
+    //   Uri.parse('https://bestrate.encureit.com/'),
+    // );
 
     Timer(Duration(seconds: 3),(){
       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BestRateWebView(controller: _controller,),));

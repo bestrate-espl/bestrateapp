@@ -2,7 +2,6 @@ import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:bestrateapp/drawer/screen/view_inquiry_details.dart';
 import 'package:bestrateapp/models/last_inquiries_model.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../models/inquiries_model.dart';
 class Home extends StatefulWidget {
@@ -39,7 +38,7 @@ class _HomeState extends State<Home> {
                     children: [
                       Container(
                         width: 180,
-                        height: 90,
+                        height: 110,
                         decoration: BoxDecoration(
                             color: BestRateColorConstant.green,
                           borderRadius: BorderRadius.circular(10)
@@ -84,7 +83,7 @@ class _HomeState extends State<Home> {
                       ),
                       Container(
                         width: 180,
-                        height: 90,
+                        height: 110,
                         decoration: BoxDecoration(
                             color: BestRateColorConstant.green,
                             borderRadius: BorderRadius.circular(10)
@@ -161,7 +160,7 @@ class _HomeState extends State<Home> {
                                 }));
                             },
                               child: Container(
-                                width: MediaQuery.of(context).size.width * 0.9,
+                                width: 350,
                                 height: 150,
                                 decoration: BoxDecoration(
                                   color: BestRateColorConstant.cardBg,
@@ -191,7 +190,7 @@ class _HomeState extends State<Home> {
                                         height: 35,
                                         child: ListView.builder(itemBuilder: (context, index) {
                                            return Padding(
-                                             padding: const EdgeInsets.all(3),
+                                             padding: const EdgeInsets.all(1),
                                              child: Container(
                                                decoration: BoxDecoration(
                                                color: BestRateColorConstant.darkBlack,

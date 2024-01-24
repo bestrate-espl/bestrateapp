@@ -190,7 +190,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   // ),
                   SizedBox(height: 6),
                   Text(pagesName[index]['name'] ?? "",style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 13,
                     fontFamily: 'GTWalsheimPro',
                     fontWeight: isSelected ? FontWeight.w500 : FontWeight.w500,color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,))
                   // PlumText(
