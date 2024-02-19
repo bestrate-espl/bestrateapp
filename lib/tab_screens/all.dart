@@ -25,7 +25,7 @@ class _TabAllState extends State<TabAll> {
             return Padding(
               padding: const EdgeInsets.fromLTRB(20,0,20,20),
               child: Container(
-                height: 310,
+                height: 320,
                 decoration: BoxDecoration(
                   color: BestRateColorConstant.cardBg,
                   borderRadius: BorderRadius.circular(15)
@@ -201,11 +201,11 @@ class _TabAllState extends State<TabAll> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0,20,0,0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                         children: [
                           Container(
-                            width: 185.6,
-                            height: 60,
+                            width: 176,
+                            height: 55,
                             decoration: BoxDecoration(
                               color: BestRateColorConstant.green,
                               borderRadius: BorderRadius.only(
@@ -227,8 +227,8 @@ class _TabAllState extends State<TabAll> {
                             ),
                           ),
                           Container(
-                            width: 185.6,
-                            height: 60,
+                            width: 176,
+                            height: 55,
                             decoration: BoxDecoration(
                                 color: BestRateColorConstant.darkRed,
                                 borderRadius: BorderRadius.only(

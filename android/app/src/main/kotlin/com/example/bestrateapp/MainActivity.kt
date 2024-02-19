@@ -1,4 +1,4 @@
-package com.example.bestrateapp
+package com.encureit.bestrateseller
 
 import io.flutter.embedding.android.FlutterActivity
 

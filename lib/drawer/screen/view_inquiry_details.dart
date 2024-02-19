@@ -73,7 +73,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                     Padding(
                       padding: const EdgeInsets.all(20),
                       child: Container(
-                        height: 385,
+                        height: 425,
                         decoration: BoxDecoration(
                             color: BestRateColorConstant.cardBg,
                             borderRadius: BorderRadius.circular(20)

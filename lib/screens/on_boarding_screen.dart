@@ -50,9 +50,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 // }, child: Image.asset('assets/images/arrow_back_image.png')),
                 GestureDetector(
                   onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                      return SignInScreen();
-                    },),);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInScreen()),
+                    );
+                    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+                    //   return SignInScreen();
+                    // },),);
                   },
                   child: Text("Skip",style: TextStyle(color: Colors.black, fontSize: 16,
                       fontFamily: 'GTWalsheimPro',

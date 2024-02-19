@@ -230,7 +230,7 @@ class _HomeState extends State<Home> {
                                             color: BestRateColorConstant.darkBlack),),
                                       ),
                                     )
-                                  ],
+                                  ], 
                                 ),
 
                               ),
