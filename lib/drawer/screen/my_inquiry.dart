@@ -27,6 +27,8 @@ class _MyInquiryState extends State<MyInquiry> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       body:Column(
@@ -36,7 +38,7 @@ class _MyInquiryState extends State<MyInquiry> {
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 150,
+                  width: screenWidth,
                   decoration: BoxDecoration(
                       color: BestRateColorConstant.green,
                       borderRadius: BorderRadius.circular(20)
@@ -50,8 +52,7 @@ class _MyInquiryState extends State<MyInquiry> {
                           // }));
                         },
                         child: Container(
-                          width: 350,
-                          height: 150,
+                          width: screenWidth * 0.89,
                           decoration: BoxDecoration(
                             color: BestRateColorConstant.cardBg,
                             borderRadius: BorderRadius.only(
@@ -127,7 +128,10 @@ class _MyInquiryState extends State<MyInquiry> {
                       ),
                       Align(
                           alignment: Alignment.centerRight,
-                          child: Image.asset('assets/images/keyboard_arrow_right.png')),
+                          child: SizedBox(
+                            width: 24,
+                              height: 24,
+                              child: Image.asset('assets/images/keyboard_arrow_right.png'))),
                     ],
                   ),
                 ),

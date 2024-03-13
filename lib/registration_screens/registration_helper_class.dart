@@ -1,4 +1,4 @@
-import 'package:bestrateapp/screens/otp_registration_screen.dart';
+import 'package:bestrateapp/otp_screens/otp_registration_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';

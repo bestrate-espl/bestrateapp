@@ -1,5 +1,7 @@
-import 'package:bestrateapp/screens/splase_sereen.dart';
+import 'package:bestrateapp/provider/on_boarding_provider/on_boarding_provider.dart';
+import 'package:bestrateapp/splas_screens/splase_sereen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 import 'best_rate_web_view.dart';
@@ -9,16 +11,27 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Color(0xFF7258DB)
-      ),
-      home: SplashScreen(),
-      // home: WebViewApp(),
+
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(create: (context) => OnBoardingProvider())
+    ],
+      builder: (context, child){
+      return  MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primaryColor: Color(0xFF7258DB)
+        ),
+        home: SplashScreen(),
+        // home: WebViewApp(),
+      );
+      },
     );
+
+
+
   }
 
 }

@@ -1,6 +1,6 @@
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:bestrateapp/controller/registration_controller.dart';
-import 'package:bestrateapp/screens/registration_helper_class.dart';
+import 'package:bestrateapp/registration_screens/registration_helper_class.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';

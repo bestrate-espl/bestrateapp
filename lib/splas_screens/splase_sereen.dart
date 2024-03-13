@@ -1,9 +1,8 @@
 import 'dart:async';
-
-import 'package:bestrateapp/screens/on_boarding_screen.dart';
 import 'package:flutter/services.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
+import '../dashboard_screens/on_boarding_screen.dart';
 // import '../best_rate_web_view.dart';
 
 class SplashScreen extends StatefulWidget {

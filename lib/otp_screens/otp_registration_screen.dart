@@ -1,8 +1,9 @@
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
-import 'package:bestrateapp/screens/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
+
+import '../dashboard_screens/dashboard_screen.dart';
 class OtpRegistrationScreen extends StatefulWidget {
   const OtpRegistrationScreen({super.key});
 

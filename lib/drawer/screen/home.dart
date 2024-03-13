@@ -12,6 +12,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   List<LastInquiriesModel> lastInquiries = [
   LastInquiriesModel(inqId: "INQ123650", qty: "1000", dayTime: "04-12-2023, 11:50AM"),
   LastInquiriesModel(inqId: "INQ123651", qty: "500", dayTime: "06-12-2023, 10:00AM"),
@@ -24,6 +25,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -146,7 +149,7 @@ class _HomeState extends State<Home> {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Container(
-                        height: 150,
+                        width: screenWidth,
                         decoration: BoxDecoration(
                             color: BestRateColorConstant.green,
                           borderRadius: BorderRadius.circular(20)
@@ -160,8 +163,7 @@ class _HomeState extends State<Home> {
                                 }));
                             },
                               child: Container(
-                                width: 350,
-                                height: 150,
+                                width: screenWidth * 0.89,
                                 decoration: BoxDecoration(
                                   color: BestRateColorConstant.cardBg,
                                   borderRadius: BorderRadius.only(
@@ -230,14 +232,17 @@ class _HomeState extends State<Home> {
                                             color: BestRateColorConstant.darkBlack),),
                                       ),
                                     )
-                                  ], 
+                                  ],
                                 ),
 
                               ),
                             ),
                             Align(
                               alignment: Alignment.centerRight,
-                                child: Image.asset('assets/images/keyboard_arrow_right.png')),
+                                child: SizedBox(
+                                  width: 24,
+                                    height: 24,
+                                    child: Image.asset('assets/images/keyboard_arrow_right.png'))),
                           ],
                         ),
                       ),

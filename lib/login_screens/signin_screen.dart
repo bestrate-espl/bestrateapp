@@ -1,5 +1,5 @@
-import 'package:bestrateapp/screens/otp_login_screen.dart';
-import 'package:bestrateapp/screens/registration_screen.dart';
+import 'package:bestrateapp/otp_screens/otp_login_screen.dart';
+import 'package:bestrateapp/registration_screens/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 

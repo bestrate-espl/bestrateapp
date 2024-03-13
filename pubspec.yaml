@@ -40,6 +40,7 @@ dependencies:
 #  shared_preferences: ^2.0.12
   pin_code_fields: ^7.3.0
   get: ^4.6.6
+  provider: ^6.1.2
 #  fluttertoast: ^8.2.4
 
 dev_dependencies:
