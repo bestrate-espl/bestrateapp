@@ -1,4 +1,4 @@
-# bestrateapp
+# BestRate Buyer Mobile Appication
 
 A new Flutter project.
 
