@@ -1,3 +1,4 @@
+import 'package:bestrateapp/page_route/route_config.dart';
 import 'package:bestrateapp/provider/on_boarding_provider/on_boarding_provider.dart';
 import 'package:bestrateapp/splas_screens/splase_sereen.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,13 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (context) => OnBoardingProvider())
     ],
       builder: (context, child){
-      return  MaterialApp(
+      return  MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            primaryColor: Color(0xFF7258DB)
-        ),
-        home: SplashScreen(),
+         routerConfig: MyApplicationRouter.router,
+        // theme: ThemeData(
+        //     primaryColor: Color(0xFF7258DB)
+        // ),
+
         // home: WebViewApp(),
       );
       },

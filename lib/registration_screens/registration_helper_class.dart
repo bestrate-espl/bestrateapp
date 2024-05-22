@@ -1,9 +1,11 @@
 import 'package:bestrateapp/otp_screens/otp_registration_screen.dart';
+import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:go_router/go_router.dart';
 
 import '../constant/best_rate_color_constant.dart';
 import '../controller/registration_controller.dart';
@@ -584,9 +586,7 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                             ),),
 
                             onPressed: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context){
-                                return OtpRegistrationScreen();
-                              },),);
+                              context.goNamed(MyApplicationRouteConstant.OTP_REGISTRATION_SCREEN);
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color(0xFF7258DB),

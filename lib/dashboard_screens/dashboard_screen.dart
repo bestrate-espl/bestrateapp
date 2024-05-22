@@ -8,7 +8,6 @@ import 'package:bestrateapp/drawer/screen/privacy_policy.dart';
 import 'package:bestrateapp/drawer/screen/terms_conditions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 
 import '../drawer/my_header_drawer.dart';
 class DashboardScreen extends StatefulWidget {

@@ -1,7 +1,8 @@
-import 'package:bestrateapp/login_screens/signin_screen.dart';
+import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/provider/on_boarding_provider/on_boarding_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -49,13 +50,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     // }, child: Image.asset('assets/images/arrow_back_image.png')),
                     GestureDetector(
                       onTap: (){
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(builder: (context) => const SignInScreen()),
-                        );
-                        // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                        //   return SignInScreen();
-                        // },),);
+                        context.goNamed(MyApplicationRouteConstant.SIGNIN_SCREEN);
                       },
                       child: const Text("Skip",style: TextStyle(color: Colors.black, fontSize: 16,
                           fontFamily: 'GTWalsheimPro',
@@ -90,9 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     child: Text("Get Started", ),
 
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-                        return SignInScreen();
-                      },),);
+                      context.pushNamed(MyApplicationRouteConstant.SIGNIN_SCREEN);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color(0xFF7258DB),

@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:flutter/services.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import '../dashboard_screens/on_boarding_screen.dart';
 // import '../best_rate_web_view.dart';
 
@@ -24,9 +26,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(Duration(seconds: 3),(){
       // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BestRateWebView(controller: _controller,),));
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-        return OnBoardingScreen();
-      },),);
+      // GoRouter.of(context).pushNamed(MyApplicationRouteConstant.ON_BOARDING);
+      context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
+      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
+      //   return OnBoardingScreen();
+      // },),);
     });
   }
   @override
