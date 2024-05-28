@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../intro_screens/intro_screen_1.dart';
 import '../intro_screens/intro_screen_2.dart';
 import '../intro_screens/intro_screen_3.dart';
