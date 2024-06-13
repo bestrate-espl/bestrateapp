@@ -1,5 +1,16 @@
 import 'package:bestrateapp/page_route/route_config.dart';
 import 'package:bestrateapp/provider/on_boarding_provider/on_boarding_provider.dart';
+import 'package:bestrateapp/providers/check_box_provider.dart';
+import 'package:bestrateapp/providers/content_provider.dart';
+import 'package:bestrateapp/providers/login_provider.dart';
+import 'package:bestrateapp/providers/registration_area_provider%20.dart';
+import 'package:bestrateapp/providers/registration_provider.dart';
+import 'package:bestrateapp/providers/resend_otp_provider.dart';
+import 'package:bestrateapp/providers/search_business_provider.dart';
+import 'package:bestrateapp/providers/seller_inquiries_provider.dart';
+import 'package:bestrateapp/providers/seller_keywords_provider.dart';
+import 'package:bestrateapp/providers/seller_profile_provider.dart';
+import 'package:bestrateapp/providers/verify_register_otp_provider.dart';
 import 'package:bestrateapp/splas_screens/splase_sereen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +28,44 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return MultiProvider(providers: [
-      ChangeNotifierProvider(create: (context) => OnBoardingProvider())
+      ChangeNotifierProvider(create:
+          (context) => OnBoardingProvider()
+      ),
+      ChangeNotifierProvider(
+        create: (context) => RegistrationAreaProvider(),
+      ),
+
+      ChangeNotifierProvider(
+        create: (context) => ContentProvider(),
+      ),
+
+      ChangeNotifierProvider(
+        create: (context) => CheckboxProvider(),
+      ),
+      ChangeNotifierProvider(
+          create: (context) => SearchBusinessProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => RegistrationProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => VerifyRegisterOtpProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => LoginProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => SellerInquiriesProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => SellerProfileProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => SellerKeywordsProviders()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => ResendOtpProvider()
+      ),
     ],
       builder: (context, child){
       return  MaterialApp.router(

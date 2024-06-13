@@ -1,9 +1,11 @@
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 import '../dashboard_screens/dashboard_screen.dart';
+import '../page_route/route_constant.dart';
 class OtpRegistrationScreen extends StatefulWidget {
   const OtpRegistrationScreen({super.key});
 
@@ -27,7 +29,7 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
               children: [
                 GestureDetector(
                   onTap: (){
-                    Navigator.pop(context);
+                    context.goNamed(MyApplicationRouteConstant.REGISTRATION_SCREEN);
                   },
                   child: Padding(padding: EdgeInsets.all(10),
                     child: Image.asset('assets/images/arrow_back_image.png'),
