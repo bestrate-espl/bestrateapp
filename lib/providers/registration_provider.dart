@@ -10,16 +10,19 @@ import '../utils/show_toast.dart';
 class RegistrationProvider extends ChangeNotifier{
   RegisterModel? _registerModel;
   bool _isLoading = false;
+  RegisterRequestModel _requestModel = RegisterRequestModel();
+
+  RegisterRequestModel get requestModel => _requestModel;
 
   RegisterModel? get registerModel => _registerModel;
 
   bool get isLoading => _isLoading;
 
-  Future<void> getRegister(RegisterRequestModel requestModel) async {
+  Future<void> getRegister() async {
     _isLoading = true;
     notifyListeners();
     try{
-      _registerModel = await ApiService.getRegister(requestModel);
+      _registerModel = await ApiService.getRegister(_requestModel);
       if (_registerModel!.statusCode == 200 && _registerModel!.status == true){
           ShowToast.shoToastSuccess(_registerModel!.message.toString());
           log(_registerModel!.toJson().toString() ?? '', name: "Business List");

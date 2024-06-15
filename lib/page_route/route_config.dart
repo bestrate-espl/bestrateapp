@@ -10,6 +10,8 @@ import 'package:bestrateapp/splas_screens/splase_sereen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../models/register_model.dart';
+
 class MyApplicationRouter{
 
 
@@ -63,7 +65,9 @@ class MyApplicationRouter{
           name: MyApplicationRouteConstant.OTP_REGISTRATION_SCREEN,
           path: "/otp_registration_screen",
           builder: (context, state){
-            return OtpRegistrationScreen();
+            return OtpRegistrationScreen(
+                registerModel: state.extra as RegisterModel
+            );
           }
       ),
 

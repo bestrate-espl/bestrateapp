@@ -1,5 +1,5 @@
 import 'package:bestrateapp/page_route/route_constant.dart';
-import 'package:bestrateapp/provider/on_boarding_provider/on_boarding_provider.dart';
+import 'package:bestrateapp/providers/on_boarding_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';

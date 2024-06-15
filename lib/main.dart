@@ -1,5 +1,5 @@
 import 'package:bestrateapp/page_route/route_config.dart';
-import 'package:bestrateapp/provider/on_boarding_provider/on_boarding_provider.dart';
+import 'package:bestrateapp/providers/on_boarding_provider.dart';
 import 'package:bestrateapp/providers/check_box_provider.dart';
 import 'package:bestrateapp/providers/content_provider.dart';
 import 'package:bestrateapp/providers/login_provider.dart';
