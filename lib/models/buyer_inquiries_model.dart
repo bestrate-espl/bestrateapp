@@ -1,41 +1,45 @@
 import 'dart:convert';
 
-class SellerInquiriesModel {
+class BuyerInquiriesModel {
   final int? statusCode;
   final bool? status;
-  final int? inquiriesReceived;
-  final int? latestBidsOpen;
+  final String? message;
+  final int? totalInquiries;
+  final int? latestBids;
   final List<Inquiry>? inquiries;
   final String? errorMsg;
   final bool? isError;
 
-  SellerInquiriesModel({
+  BuyerInquiriesModel({
     this.statusCode,
     this.status,
-    this.inquiriesReceived,
-    this.latestBidsOpen,
+    this.message,
+    this.totalInquiries,
+    this.latestBids,
     this.inquiries,
     this.errorMsg,
     this.isError
   });
 
-  factory SellerInquiriesModel.fromRawJson(String str) => SellerInquiriesModel.fromJson(json.decode(str));
+  factory BuyerInquiriesModel.fromRawJson(String str) => BuyerInquiriesModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory SellerInquiriesModel.fromJson(Map<String, dynamic> json) => SellerInquiriesModel(
+  factory BuyerInquiriesModel.fromJson(Map<String, dynamic> json) => BuyerInquiriesModel(
     statusCode: json["status_code"],
     status: json["status"],
-    inquiriesReceived: json["inquiries_received"],
-    latestBidsOpen: json["latest_bids_open"],
+    message: json["message"],
+    totalInquiries: json["total_inquiries"],
+    latestBids: json["latest_bids"],
     inquiries: json["inquiries"] == null ? [] : List<Inquiry>.from(json["inquiries"]!.map((x) => Inquiry.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "status_code": statusCode,
     "status": status,
-    "inquiries_received": inquiriesReceived,
-    "latest_bids_open": latestBidsOpen,
+    "message": message,
+    "total_inquiries": totalInquiries,
+    "latest_bids": latestBids,
     "inquiries": inquiries == null ? [] : List<dynamic>.from(inquiries!.map((x) => x.toJson())),
   };
 }
@@ -45,7 +49,7 @@ class Inquiry {
   final String? product;
   final String? quantity;
   final String? inquiryDate;
-  final String? inquiryTime;
+  final dynamic inquiryTime;
   final String? inquiryStatus;
   final String? budgetStart;
   final String? budgetEnd;

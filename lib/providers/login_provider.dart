@@ -57,7 +57,7 @@ class LoginProvider extends ChangeNotifier{
         SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_NAME, "${_verifyLoginOtpModel!.data!.firstName}${" "}${_verifyLoginOtpModel!.data!.lastName}");
         SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_EMAIL, _verifyLoginOtpModel!.data!.email.toString());
         SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_TOKEN, _verifyLoginOtpModel!.token.toString());
-        SharedPreferenceHelper.saveData(SharedPreferenceConstant.SELLER_ID, _verifyLoginOtpModel!.data!.sellerId.toString());
+        SharedPreferenceHelper.saveData(SharedPreferenceConstant.BUYER_ID, _verifyLoginOtpModel!.data!.buyerId.toString());
         log(_verifyLoginOtpModel!.toJson().toString() ?? '', name: "Business List");
         notifyListeners();
 

@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:bestrateapp/page_route/route_constant.dart';
+import 'package:bestrateapp/sharedpreference/SharedPreferenceHelper.dart';
 import 'package:flutter/services.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter/material.dart';
@@ -24,13 +25,8 @@ class _SplashScreenState extends State<SplashScreen> {
     //   Uri.parse('https://bestrate.encureit.com/'),
     // );
 
-    Timer(Duration(seconds: 3),(){
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BestRateWebView(controller: _controller,),));
-      // GoRouter.of(context).pushNamed(MyApplicationRouteConstant.ON_BOARDING);
-      context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
-      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-      //   return OnBoardingScreen();
-      // },),);
+    Timer(Duration(seconds: 3),() async{
+      await SharedPreferenceHelper.getLoginState() ? context.goNamed(MyApplicationRouteConstant.DASHBOARD_SCREEN) : context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
     });
   }
   @override

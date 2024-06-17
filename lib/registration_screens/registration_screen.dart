@@ -1,9 +1,11 @@
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:bestrateapp/controller/registration_controller.dart';
+import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/registration_screens/registration_helper_class.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:go_router/go_router.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -14,8 +16,8 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   List<Widget> registrationScreens = [
-    BuyerInformationScreen(),
-    BusinessDetails()
+    const BuyerInformationScreen(),
+    const BusinessDetails()
   ];
   final registrationController = Get.put(RegistrationController());
 
@@ -38,7 +40,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       if (registrationController.selectedPage > 0){
                         registrationController.updateRegistrationPage(registrationController.selectedPage - 1);
                       }else{
-                       Navigator.pop(context);
+                       context.goNamed(MyApplicationRouteConstant.SIGNIN_SCREEN);
                       }
                     },
                     child: Padding(
@@ -46,7 +48,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       child: Image.asset('assets/images/arrow_back_image.png'),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Padding(padding: EdgeInsets.fromLTRB(72, 10, 0, 0),
                       child: Text("Create an Account", style: TextStyle(
                           fontSize: 20,
@@ -57,7 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: registrationScreens.map((e) =>

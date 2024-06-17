@@ -1,11 +1,11 @@
 import 'package:bestrateapp/models/add_seller_keyword.dart';
 import 'package:bestrateapp/models/area_model.dart';
+import 'package:bestrateapp/models/buyer_inquiries_model.dart';
 import 'package:bestrateapp/models/delete_seller_keyword.dart';
 import 'package:bestrateapp/models/login_model.dart';
 import 'package:bestrateapp/models/profile_update_model.dart';
 import 'package:bestrateapp/models/resend_otp_model.dart';
 import 'package:bestrateapp/models/seller_inquiries_details_model.dart';
-import 'package:bestrateapp/models/seller_inquiries_model.dart';
 import 'package:bestrateapp/models/seller_keywods_model.dart';
 import 'package:bestrateapp/models/seller_profile_model.dart';
 import 'package:bestrateapp/models/seller_request_keyword_model.dart';
@@ -214,34 +214,34 @@ class ApiService {
     }
   }
 
-  static Future<SellerInquiriesModel> getSellerInquiries(int userId, String page, String token) async {
-    late SellerInquiriesModel sellerInquiriesModel;
+  static Future<BuyerInquiriesModel> getBuyerInquiries(int buyerId, String page, String token) async {
+    late BuyerInquiriesModel buyerInquiriesModel;
     try {
       final response = await DioService().dio.post(
           data: {
-            "user_id": userId,
+            "buyer_id": 24,
             "page": page,
           },
-          ConstantUrl.get_seller_inquiries,
+          ConstantUrl.get_buyer_inquiries,
           options: Options(
             headers: {
               'Authorization': 'Bearer $token',
-              'Content-Type': 'application/x-www-form-urlencoded',
+              'Content-Type': 'application/json',
             },
           )
       );
 
       if (response.statusCode == 200) {
-        sellerInquiriesModel = SellerInquiriesModel.fromJson(response.data);
-        return sellerInquiriesModel;
+        buyerInquiriesModel = BuyerInquiriesModel.fromJson(response.data);
+        return buyerInquiriesModel;
       } else {
-        return SellerInquiriesModel(
+        return BuyerInquiriesModel(
             errorMsg: 'Api failed with status code : ${response.statusCode}',
             isError: true
         );
       }
     } catch (e) {
-      return SellerInquiriesModel(
+      return BuyerInquiriesModel(
         errorMsg: 'An error occurred $e',
         isError: true,
       );

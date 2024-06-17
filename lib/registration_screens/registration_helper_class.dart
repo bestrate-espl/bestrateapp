@@ -54,7 +54,10 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
   @override
   void initState() {
     super.initState();
-    getArea();
+    WidgetsBinding.instance.addPostFrameCallback((timestamp) async{
+      await getArea();
+    });
+
   }
 
   @override
@@ -159,14 +162,13 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(20,20,20,0),
-                                  child: Container(
-                                      child: const Text("Email Address*", style: TextStyle(
-                                          fontSize: 18,
-                                          fontFamily: 'GTWalsheimPro',
-                                          fontWeight: FontWeight.w500,
-                                          color: BestRateColorConstant.darkBlack),)),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(20,20,20,0),
+                                  child: Text("Email Address*", style: TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: 'GTWalsheimPro',
+                                      fontWeight: FontWeight.w500,
+                                      color: BestRateColorConstant.darkBlack),),
                                 ),
 
                                 Padding(
@@ -338,16 +340,15 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                   ),
                                 ),
 
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(20,30,20,0),
+                                const Padding(
+                                  padding: EdgeInsets.fromLTRB(20,30,20,0),
                                   child: Row(
                                     children: [
-                                      Container(
-                                          child: const Text("Pin Code*", style: TextStyle(
-                                              fontSize: 18,
-                                              fontFamily: 'GTWalsheimPro',
-                                              fontWeight: FontWeight.w500,
-                                              color: BestRateColorConstant.darkBlack),)),
+                                      Text("Pin Code*", style: TextStyle(
+                                          fontSize: 18,
+                                          fontFamily: 'GTWalsheimPro',
+                                          fontWeight: FontWeight.w500,
+                                          color: BestRateColorConstant.darkBlack),),
                                     ],
                                   ),
                                 ),
@@ -528,6 +529,7 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                                           setState(() {
                                             selectedValue = value!;
                                           });
+                                          registerProvider.requestModel.entity = selectedValue;
                                         },
                                         activeColor: Colors.black,
                                       ),

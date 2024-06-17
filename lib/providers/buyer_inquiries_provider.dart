@@ -3,15 +3,17 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
 import 'package:bestrateapp/models/seller_inquiries_details_model.dart';
-import 'package:bestrateapp/models/seller_inquiries_model.dart';
 import 'package:bestrateapp/models/send_quotation_model.dart';
 import 'package:bestrateapp/service/api_services.dart';
 import 'package:bestrateapp/utils/show_toast.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 
-class SellerInquiriesProvider extends ChangeNotifier{
-  SellerInquiriesModel? _sellerInquiriesModel;
+import '../models/buyer_inquiries_model.dart';
+
+
+class BuyerInquiriesProvider extends ChangeNotifier{
+  BuyerInquiriesModel? _buyerInquiriesModel;
   SellerInquiriesDetailsModel? _sellerInquiriesDetailsModel;
   SendQuotationModel? _sendQuotationModel;
   bool _isLoading = false;
@@ -20,26 +22,26 @@ class SellerInquiriesProvider extends ChangeNotifier{
 
 
 
-  SellerInquiriesModel? get sellerInquiriesModel => _sellerInquiriesModel;
+  BuyerInquiriesModel? get buyerInquiriesModel => _buyerInquiriesModel;
   SellerInquiriesDetailsModel? get sellerInquiriesDetailsModel => _sellerInquiriesDetailsModel;
   SendQuotationModel? get sendQuotationModel => _sendQuotationModel;
   bool get isLoading => _isLoading;
   
   
-  Future<void> getSellerInquiries(String token, int userId, String page) async {
+  Future<void> getBuyerInquiries(String token, int buyerId, String page) async {
     _isLoading = true;
     notifyListeners();
     try {
-      _sellerInquiriesModel = await ApiService.getSellerInquiries(userId, page, token);
-      if (_sellerInquiriesModel!.statusCode == 200 && _sellerInquiriesModel!.status == true){
-        if (_sellerInquiriesModel!.inquiries != null){
+      _buyerInquiriesModel = await ApiService.getBuyerInquiries(buyerId, page, token);
+      if (_buyerInquiriesModel!.statusCode == 200 && _buyerInquiriesModel!.status == true){
+        if (_buyerInquiriesModel!.inquiries != null){
           notifyListeners();
-          log(_sellerInquiriesModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+          log(_buyerInquiriesModel!.toJson().toString() ?? '', name: "Buyer Inquiries Data");
         }else{
-          ShowToast.showToastError("No data found");
+          ShowToast.showToastError(_buyerInquiriesModel!.message.toString());
         }
       }else{
-        ShowToast.showToastError("Something went wrong");
+        ShowToast.showToastError(_buyerInquiriesModel!.message.toString());
       }
     }catch(e){
       ShowToast.showToastError(e.toString());

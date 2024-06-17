@@ -7,7 +7,7 @@ import 'package:bestrateapp/providers/registration_area_provider%20.dart';
 import 'package:bestrateapp/providers/registration_provider.dart';
 import 'package:bestrateapp/providers/resend_otp_provider.dart';
 import 'package:bestrateapp/providers/search_business_provider.dart';
-import 'package:bestrateapp/providers/seller_inquiries_provider.dart';
+import 'package:bestrateapp/providers/buyer_inquiries_provider.dart';
 import 'package:bestrateapp/providers/seller_keywords_provider.dart';
 import 'package:bestrateapp/providers/seller_profile_provider.dart';
 import 'package:bestrateapp/providers/verify_register_otp_provider.dart';
@@ -55,7 +55,7 @@ class MyApp extends StatelessWidget {
           create: (context) => LoginProvider()
       ),
       ChangeNotifierProvider(
-          create: (context) => SellerInquiriesProvider()
+          create: (context) => BuyerInquiriesProvider()
       ),
       ChangeNotifierProvider(
           create: (context) => SellerProfileProvider()

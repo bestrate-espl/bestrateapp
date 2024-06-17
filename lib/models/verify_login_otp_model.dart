@@ -42,35 +42,31 @@ class VerifyLoginOtpModel {
 
 class Data {
   final int? userid;
-  final int? sellerId;
+  final int? buyerId;
   final String? firstName;
   final String? lastName;
   final String? email;
-  final String? mobile;
+  final String? mobileNumber;
+  final dynamic city;
   final String? area;
   final String? pincode;
   final String? entity;
   final String? businessName;
-  final String? businessArea;
-  final String? businessPincode;
   final String? gst;
-  final List<String>? keywords;
 
   Data({
     this.userid,
-    this.sellerId,
+    this.buyerId,
     this.firstName,
     this.lastName,
     this.email,
-    this.mobile,
+    this.mobileNumber,
+    this.city,
     this.area,
     this.pincode,
     this.entity,
     this.businessName,
-    this.businessArea,
-    this.businessPincode,
     this.gst,
-    this.keywords,
   });
 
   factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
@@ -79,35 +75,31 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
     userid: json["userid"],
-    sellerId: json["seller_id"],
+    buyerId: json["buyer_id"],
     firstName: json["first_name"],
     lastName: json["last_name"],
     email: json["email"],
-    mobile: json["mobile"],
+    mobileNumber: json["mobile_number"],
+    city: json["city"],
     area: json["area"],
     pincode: json["pincode"],
     entity: json["entity"],
     businessName: json["business_name"],
-    businessArea: json["business_area"],
-    businessPincode: json["business_pincode"],
     gst: json["gst"],
-    keywords: json["keywords"] == null ? [] : List<String>.from(json["keywords"]!.map((x) => x)),
   );
 
   Map<String, dynamic> toJson() => {
     "userid": userid,
-    "seller_id": sellerId,
+    "buyer_id": buyerId,
     "first_name": firstName,
     "last_name": lastName,
     "email": email,
-    "mobile": mobile,
+    "mobile_number": mobileNumber,
+    "city": city,
     "area": area,
     "pincode": pincode,
     "entity": entity,
     "business_name": businessName,
-    "business_area": businessArea,
-    "business_pincode": businessPincode,
     "gst": gst,
-    "keywords": keywords == null ? [] : List<dynamic>.from(keywords!.map((x) => x)),
   };
 }

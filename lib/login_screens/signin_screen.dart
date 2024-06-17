@@ -77,9 +77,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                   child: TextFormField(
                                     controller: _mobileTextController,
                                     maxLines: 1,
-                                    maxLength: 15,
+                                    maxLength: 10,
                                     keyboardType: TextInputType.text,
-                                    validator: Validators.validateGSTIN,
+                                    validator: Validators.validatePhone,
                                     onChanged: (value){
 
                                     },

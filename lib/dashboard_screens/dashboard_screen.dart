@@ -6,8 +6,11 @@ import 'package:bestrateapp/drawer/screen/my_inquiry.dart';
 import 'package:bestrateapp/drawer/screen/my_profile.dart';
 import 'package:bestrateapp/drawer/screen/privacy_policy.dart';
 import 'package:bestrateapp/drawer/screen/terms_conditions.dart';
+import 'package:bestrateapp/page_route/route_constant.dart';
+import 'package:bestrateapp/sharedpreference/SharedPreferenceHelper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 
 import '../drawer/my_header_drawer.dart';
 class DashboardScreen extends StatefulWidget {
@@ -55,7 +58,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             child: Image.asset('assets/images/menu.png')),),
                     Expanded(
                         child: Center(
-                            child: Text(titleName,style: TextStyle(
+                            child: Text(titleName,style: const TextStyle(
                                 fontSize: 20,
                                 fontFamily: 'GTWalsheimPro',
                                 fontWeight: FontWeight.w700,
@@ -179,26 +182,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Image.asset(pagesName[index]['selectedImage'] ?? "",height: isSelected ? 24 : 24,
                     color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,),
-                  // PlumImageAsset(
-                  //   image: isSelected
-                  //       ? indexPageController.pagesName[index]['selectedImage']
-                  //       : indexPageController.pagesName[index]['image'],
-                  //   color: isSelected ? PlumColorConstant.appPrimaryColor : PlumColorConstant.lightGreyColor,
-                  //   height: isSelected ? 22.px : 20.px,
-                  //   isRepeat: true,
-                  // ),
                   SizedBox(height: 6),
                   Text(pagesName[index]['name'] ?? "",style: TextStyle(
                     fontSize: 13,
                     fontFamily: 'GTWalsheimPro',
                     fontWeight: isSelected ? FontWeight.w500 : FontWeight.w500,color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,))
-                  // PlumText(
-                  //   indexPageController.pagesName[index]['name']!,
-                  //   color: isSelected ? PlumColorConstant.appPrimaryColor : PlumColorConstant.lightGreyColor,
-                  //   fontSize: 11.px,
-                  //   maxLines: 1,
-                  //   fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                  // ),
                 ],
               )
             ],
@@ -210,7 +198,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   Widget menuItems(int id, String title, String image, bool selected){
     return Material(
-      // color: selected ? Colors.grey[300] : Colors.transparent,
       child: InkWell(
         onTap: (){
           isSideMenu = true;
@@ -237,7 +224,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 flex: 5,
                   child: Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 18,
                         fontFamily: 'GTWalsheimPro',
                         fontWeight: FontWeight.w400,
@@ -278,8 +265,8 @@ class CustomDialogWidget extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
+            const Padding(
+              padding: EdgeInsets.only(top: 30),
               child: Text("Are you sure you want to logout?", style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal,color: Colors.black),),
             ),
             Padding(
@@ -294,8 +281,14 @@ class CustomDialogWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 70),
-                  child: Text("No", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black),),
+                  padding: EdgeInsets.only(left: 70),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.of(context).pop();
+                    },
+                      child: const Text("No", style:
+                      TextStyle(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black),)
+                  ),
                 ),
                 Expanded(
                   child: Center(
@@ -312,8 +305,11 @@ class CustomDialogWidget extends StatelessWidget {
                   child: GestureDetector(
                       onTap: (){
                         Navigator.of(context).pop();
+                         SharedPreferenceHelper.clearLoginState();
+                        context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
                       },
-                      child: Text("Yes, sure", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black),)),
+                      child: const Text("Yes, sure", style: TextStyle(fontWeight: FontWeight.normal, fontSize: 16, color: Colors.black),)
+                  ),
                 ),
               ],
             )
