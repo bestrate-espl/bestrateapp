@@ -2,8 +2,7 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
-import 'package:bestrateapp/models/seller_inquiries_details_model.dart';
-import 'package:bestrateapp/models/send_quotation_model.dart';
+import 'package:bestrateapp/models/buyer_inquiries_details_model.dart';
 import 'package:bestrateapp/service/api_services.dart';
 import 'package:bestrateapp/utils/show_toast.dart';
 import 'package:file_picker/file_picker.dart';
@@ -14,8 +13,7 @@ import '../models/buyer_inquiries_model.dart';
 
 class BuyerInquiriesProvider extends ChangeNotifier{
   BuyerInquiriesModel? _buyerInquiriesModel;
-  SellerInquiriesDetailsModel? _sellerInquiriesDetailsModel;
-  SendQuotationModel? _sendQuotationModel;
+  BuyerInquiriesDetailsModel? _buyerInquiriesDetailsModel;
   bool _isLoading = false;
   String?  fileName, filePath;
   File? file;
@@ -23,8 +21,7 @@ class BuyerInquiriesProvider extends ChangeNotifier{
 
 
   BuyerInquiriesModel? get buyerInquiriesModel => _buyerInquiriesModel;
-  SellerInquiriesDetailsModel? get sellerInquiriesDetailsModel => _sellerInquiriesDetailsModel;
-  SendQuotationModel? get sendQuotationModel => _sendQuotationModel;
+  BuyerInquiriesDetailsModel? get buyerInquiriesDetailsModel => _buyerInquiriesDetailsModel;
   bool get isLoading => _isLoading;
   
   
@@ -52,15 +49,15 @@ class BuyerInquiriesProvider extends ChangeNotifier{
   }
 
 
-  Future<void> getSellerInquiriesDetails(String token, int inquiriesId) async {
+  Future<void> getBuyerInquiriesDetails(String token, int buyerId, int inquiriesId) async {
     _isLoading = true;
     notifyListeners();
     try {
-      _sellerInquiriesDetailsModel = await ApiService.getSellerInquiriesDetails(token, inquiriesId);
-      if (_sellerInquiriesDetailsModel!.statusCode == 200 &&
-          _sellerInquiriesDetailsModel!.status == true){
+      _buyerInquiriesDetailsModel = await ApiService.getBuyerInquiriesDetails(token, buyerId, inquiriesId);
+      if (_buyerInquiriesDetailsModel!.statusCode == 200 &&
+          _buyerInquiriesDetailsModel!.status == true){
             notifyListeners();
-           log(_sellerInquiriesDetailsModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+           log(_buyerInquiriesDetailsModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
       }else{
         ShowToast.showToastError("Something went wrong");
       }
@@ -72,26 +69,26 @@ class BuyerInquiriesProvider extends ChangeNotifier{
     }
   }
 
-  Future<void> getSendQuotation(String token, String inquiryid, String amount, String details, String filePath, String fileName) async {
-    _isLoading = true;
-    notifyListeners();
-    try {
-      _sendQuotationModel = await ApiService.getSendQuotation(token,inquiryid,amount,details,filePath, fileName);
-      if (_sendQuotationModel!.statusCode == 200 && _sendQuotationModel!.status == true){
-        ShowToast.shoToastSuccess(_sendQuotationModel!.message.toString());
-        clearProviderData();
-        notifyListeners();
-        log(_sendQuotationModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
-      }else{
-        ShowToast.showToastError("Something went wrong");
-      }
-    }catch(e){
-      ShowToast.showToastError(e.toString());
-    }finally {
-      _isLoading = false;
-      notifyListeners();
-    }
-  }
+  // Future<void> getSendQuotation(String token, String inquiryid, String amount, String details, String filePath, String fileName) async {
+  //   _isLoading = true;
+  //   notifyListeners();
+  //   try {
+  //     _sendQuotationModel = await ApiService.getSendQuotation(token,inquiryid,amount,details,filePath, fileName);
+  //     if (_sendQuotationModel!.statusCode == 200 && _sendQuotationModel!.status == true){
+  //       ShowToast.shoToastSuccess(_sendQuotationModel!.message.toString());
+  //       clearProviderData();
+  //       notifyListeners();
+  //       log(_sendQuotationModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+  //     }else{
+  //       ShowToast.showToastError("Something went wrong");
+  //     }
+  //   }catch(e){
+  //     ShowToast.showToastError(e.toString());
+  //   }finally {
+  //     _isLoading = false;
+  //     notifyListeners();
+  //   }
+  // }
   Future uploadFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
     if (result != null) {

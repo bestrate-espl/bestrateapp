@@ -1,6 +1,10 @@
+import 'dart:ffi';
+
 import 'package:bestrateapp/dashboard_screens/dashboard_screen.dart';
 import 'package:bestrateapp/dashboard_screens/on_boarding_screen.dart';
 import 'package:bestrateapp/drawer/screen/error_screen.dart';
+import 'package:bestrateapp/drawer/screen/home.dart';
+import 'package:bestrateapp/drawer/screen/view_inquiry_details.dart';
 import 'package:bestrateapp/login_screens/signin_screen.dart';
 import 'package:bestrateapp/otp_screens/otp_login_screen.dart';
 import 'package:bestrateapp/otp_screens/otp_registration_screen.dart';
@@ -24,9 +28,6 @@ class MyApplicationRouter{
         builder: (context, state){
           return SplashScreen();
         }
-        // pageBuilder: (context, state){
-        //   return MaterialPage(child: SplashScreen());
-        // }
       ),
 
       GoRoute(
@@ -76,6 +77,24 @@ class MyApplicationRouter{
           path: "/dashboard_screen",
           builder: (context, state){
             return DashboardScreen();
+          }
+      ),
+
+      GoRoute(
+          name: MyApplicationRouteConstant.HOME_SCREEN,
+          path: "/home_screen",
+          builder: (context, state){
+            return Home();
+          }
+      ),
+
+      GoRoute(
+          name: MyApplicationRouteConstant.INQUIRIES_DETAILS_SCREEN,
+          path: "/inquiries_details_screen",
+          builder: (context, state){
+            return ViewInquiryDetails(
+              inquiriesId: state.extra as int,
+            );
           }
       ),
 

@@ -1,5 +1,6 @@
 import 'package:bestrateapp/models/add_seller_keyword.dart';
 import 'package:bestrateapp/models/area_model.dart';
+import 'package:bestrateapp/models/buyer_inquiries_details_model.dart';
 import 'package:bestrateapp/models/buyer_inquiries_model.dart';
 import 'package:bestrateapp/models/delete_seller_keyword.dart';
 import 'package:bestrateapp/models/login_model.dart';
@@ -9,7 +10,6 @@ import 'package:bestrateapp/models/seller_inquiries_details_model.dart';
 import 'package:bestrateapp/models/seller_keywods_model.dart';
 import 'package:bestrateapp/models/seller_profile_model.dart';
 import 'package:bestrateapp/models/seller_request_keyword_model.dart';
-import 'package:bestrateapp/models/send_quotation_model.dart';
 import 'package:bestrateapp/models/verify_login_otp_model.dart';
 import 'package:bestrateapp/models/verify_register_otp_model.dart';
 import 'package:bestrateapp/request_models/profile_update_request_model.dart';
@@ -248,14 +248,15 @@ class ApiService {
     }
   }
 
-  static Future<SellerInquiriesDetailsModel> getSellerInquiriesDetails(String token, int inquiriesId) async {
-    late SellerInquiriesDetailsModel sellerInquiriesDetailsModel;
+  static Future<BuyerInquiriesDetailsModel> getBuyerInquiriesDetails(String token, int buyerId, int inquiriesId) async {
+    late BuyerInquiriesDetailsModel buyerInquiriesDetailsModel;
     try {
       final response = await DioService().dio.post(
           data: {
-            "inquiry_id": inquiriesId,
+            "inquiryid": inquiriesId,
+            "buyer_id": buyerId,
           },
-          ConstantUrl.view_inquiry,
+          ConstantUrl.view_buyer_inquiry,
           options: Options(
             headers: {
               'Authorization': 'Bearer $token',
@@ -265,16 +266,16 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        sellerInquiriesDetailsModel = SellerInquiriesDetailsModel.fromJson(response.data);
-        return sellerInquiriesDetailsModel;
+        buyerInquiriesDetailsModel = BuyerInquiriesDetailsModel.fromJson(response.data);
+        return buyerInquiriesDetailsModel;
       } else {
-        return SellerInquiriesDetailsModel(
+        return BuyerInquiriesDetailsModel(
             errorMsg: 'Api failed with status code : ${response.statusCode}',
             isError: true
         );
       }
     } catch (e) {
-      return SellerInquiriesDetailsModel(
+      return BuyerInquiriesDetailsModel(
         errorMsg: 'An error occurred $e',
         isError: true,
       );
@@ -349,39 +350,7 @@ class ApiService {
     }
   }
 
-  static Future<SellerRequestKeywordModel> getSellerRequestKeyword(String token, int sellerId, String keyword) async {
-    late SellerRequestKeywordModel requestKeywordModel;
-    try {
-      final response = await DioService().dio.post(
-          data: {
-            "seller_id": sellerId,
-            "keyword": keyword,
-          },
-          ConstantUrl.add_keyword_request,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Content-Type': 'application/json',
-            },
-          )
-      );
 
-      if (response.statusCode == 200) {
-        requestKeywordModel = SellerRequestKeywordModel.fromJson(response.data);
-        return requestKeywordModel;
-      } else {
-        return SellerRequestKeywordModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    } catch (e) {
-      return SellerRequestKeywordModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-  }
 
   static Future<AddSellerKeywordModel> getAddSellerKeyword(String token, int sellerId, int keywordId) async {
     late AddSellerKeywordModel addSellerKeywordModel;
@@ -419,39 +388,7 @@ class ApiService {
   }
 
 
-  static Future<DeleteSellerKeywordModel> getDeleteSellerKeyword(String token, int sellerKeywordId) async {
-    late DeleteSellerKeywordModel deleteSellerKeywordModel;
-    try {
-      final response = await DioService().dio.post(
-          data: {
-            "sellerkeyword_id": sellerKeywordId,
 
-          },
-          ConstantUrl.seller_delete_keyword,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Content-Type': 'application/json',
-            },
-          )
-      );
-
-      if (response.statusCode == 200) {
-        deleteSellerKeywordModel = DeleteSellerKeywordModel.fromJson(response.data);
-        return deleteSellerKeywordModel;
-      } else {
-        return DeleteSellerKeywordModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    } catch (e) {
-      return DeleteSellerKeywordModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-  }
 
 
   static Future<ResendOtpModel> getResendOtpMobile(int mobile) async {
@@ -522,76 +459,46 @@ class ApiService {
     }
   }
 
-  static Future<ProfileUpdateModel> getProfileUpdate(String token,ProfileUpdateRequestModel updateRequestModel) async {
-    late ProfileUpdateModel updateModel;
-    try{
-      final response = await DioService().dio.post(
-        data: updateRequestModel.toJson(),
-        ConstantUrl.sellerprofileupdate,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $token',
-            'Content-Type': 'application/json',
-          },
-        )
-      );
-
-      if (response.statusCode == 200){
-        updateModel = ProfileUpdateModel.fromJson(response.data);
-        return updateModel;
-      }else {
-        return ProfileUpdateModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    }catch(e){
-      return ProfileUpdateModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-
-  }
 
 
-  static Future<SendQuotationModel> getSendQuotation(String token, String inquiryid, String amount,
-      String details, String filePath, String fileName) async {
-    FormData data = FormData.fromMap({
-      "inquiryid" : inquiryid,
-      "amount" :  amount,
-      "details" : details,
-      "image[]" : await MultipartFile.fromFile(filePath, filename: fileName)
 
-    });
-    late SendQuotationModel quotationModel;
-    try{
-      final response = await DioService().dio.post(
-          data: data,
-          ConstantUrl.sendquotation,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Content-Type': 'application/json',
-            },
-          )
-      );
-
-      if (response.statusCode == 200){
-        quotationModel = SendQuotationModel.fromJson(response.data);
-        return quotationModel;
-      }else {
-        return SendQuotationModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    }catch(e){
-      return SendQuotationModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-
-  }
+  // static Future<SendQuotationModel> getSendQuotation(String token, String inquiryid, String amount,
+  //     String details, String filePath, String fileName) async {
+  //   FormData data = FormData.fromMap({
+  //     "inquiryid" : inquiryid,
+  //     "amount" :  amount,
+  //     "details" : details,
+  //     "image[]" : await MultipartFile.fromFile(filePath, filename: fileName)
+  //
+  //   });
+  //   late SendQuotationModel quotationModel;
+  //   try{
+  //     final response = await DioService().dio.post(
+  //         data: data,
+  //         ConstantUrl.sendquotation,
+  //         options: Options(
+  //           headers: {
+  //             'Authorization': 'Bearer $token',
+  //             'Content-Type': 'application/json',
+  //           },
+  //         )
+  //     );
+  //
+  //     if (response.statusCode == 200){
+  //       quotationModel = SendQuotationModel.fromJson(response.data);
+  //       return quotationModel;
+  //     }else {
+  //       return SendQuotationModel(
+  //           errorMsg: 'Api failed with status code : ${response.statusCode}',
+  //           isError: true
+  //       );
+  //     }
+  //   }catch(e){
+  //     return SendQuotationModel(
+  //       errorMsg: 'An error occurred $e',
+  //       isError: true,
+  //     );
+  //   }
+  //
+  // }
 }

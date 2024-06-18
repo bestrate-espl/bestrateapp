@@ -1,8 +1,10 @@
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:bestrateapp/drawer/screen/view_inquiry_details.dart';
 import 'package:bestrateapp/models/last_inquiries_model.dart';
+import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/providers/buyer_inquiries_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../models/inquiries_model.dart';
@@ -175,10 +177,8 @@ class _HomeState extends State<Home> {
                                   children: [
                                     GestureDetector(
                                       onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context){
-                                          return ViewInquiryDetails();
-                                        }));
-                                    },
+                                       context.pushNamed(MyApplicationRouteConstant.INQUIRIES_DETAILS_SCREEN,
+                                           extra: inquiriesProvider.buyerInquiriesModel?.inquiries?[index].inquiryid);                                 },
                                       child: Container(
                                         width: screenWidth * 0.89,
                                         decoration: const BoxDecoration(

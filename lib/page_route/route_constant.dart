@@ -6,4 +6,6 @@ class MyApplicationRouteConstant{
   static const String REGISTRATION_SCREEN = "registration_screen";
   static const String OTP_REGISTRATION_SCREEN = "otp_registration_screen";
   static const String DASHBOARD_SCREEN = "dashboard_screen";
+  static const String HOME_SCREEN = "home_screen";
+  static const String INQUIRIES_DETAILS_SCREEN = "inquiries_details_screen";
 }

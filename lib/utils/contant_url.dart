@@ -27,5 +27,6 @@ class ConstantUrl {
 
   /*Buyer Api's*/
   static const String get_buyer_inquiries = "get_buyer_inquiries";
+  static const String view_buyer_inquiry = "view_buyer_inquiry";
 
 }
