@@ -162,7 +162,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Expanded(
-                          child: inquiriesProvider.buyerInquiriesModel?.inquiries != null ? ListView.builder(
+                          child: inquiriesProvider.buyerInquiriesModel?.inquiries?.isNotEmpty ?? false ? ListView.builder(
                               itemCount: inquiriesProvider.buyerInquiriesModel?.inquiries?.length,
                             itemBuilder: (context, index) {
                             return Padding(

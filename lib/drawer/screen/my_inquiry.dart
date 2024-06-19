@@ -2,11 +2,13 @@ import 'package:bestrateapp/providers/buyer_inquiries_provider.dart';
 import 'package:bestrateapp/sharedpreference/SharedPreferenceHelper.dart';
 import 'package:bestrateapp/sharedpreference/sharedpreference_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/best_rate_color_constant.dart';
 import '../../models/inquiries_model.dart';
 import '../../models/last_inquiries_model.dart';
+import '../../page_route/route_constant.dart';
 class MyInquiry extends StatefulWidget {
   const MyInquiry({super.key});
 
@@ -42,7 +44,7 @@ class _MyInquiryState extends State<MyInquiry> {
               Column(
                 children: [
                   Expanded(
-                    child: inquiriesProvider.buyerInquiriesModel?.inquiries != null ? ListView.builder(
+                    child: inquiriesProvider.buyerInquiriesModel?.inquiries?.isNotEmpty ?? false ? ListView.builder(
                       itemCount:inquiriesProvider.buyerInquiriesModel?.inquiries?.length,
                       itemBuilder: (context, index) {
                       return Padding(
@@ -57,9 +59,8 @@ class _MyInquiryState extends State<MyInquiry> {
                             children: [
                               GestureDetector(
                                 onTap: (){
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context){
-                                  //   return ViewInquiryDetails();
-                                  // }));
+                                  context.pushNamed(MyApplicationRouteConstant.INQUIRIES_DETAILS_SCREEN,
+                                      extra: inquiriesProvider.buyerInquiriesModel?.inquiries?[index].inquiryid);
                                 },
                                 child: Container(
                                   width: screenWidth * 0.89,

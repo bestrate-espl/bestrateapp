@@ -26,7 +26,7 @@ class _TabAllState extends State<TabAll> {
           backgroundColor: Colors.white,
           body: SafeArea(
             child: Center(
-              child: inquiriesAllProvider.buyerInquiriesDetailsModel?.allInquiries != null ? ListView.builder(
+              child: inquiriesAllProvider.buyerInquiriesDetailsModel?.allInquiries?.isNotEmpty ?? false ? ListView.builder(
                 itemCount: inquiriesAllProvider.buyerInquiriesDetailsModel?.allInquiries?.length,
                 itemBuilder: (context, index){
                 return Padding(
@@ -266,10 +266,8 @@ class _TabAllState extends State<TabAll> {
                 );
               },
 
-              ): Container(
-                child: Center(
-                  child: Text("No data found"),
-                ),
+              ): const Center(
+                child: Text("No data found"),
               )
             ),
           ),

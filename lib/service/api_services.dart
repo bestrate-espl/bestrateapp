@@ -219,7 +219,7 @@ class ApiService {
     try {
       final response = await DioService().dio.post(
           data: {
-            "buyer_id": 24,
+            "buyer_id": buyerId,
             "page": page,
           },
           ConstantUrl.get_buyer_inquiries,
