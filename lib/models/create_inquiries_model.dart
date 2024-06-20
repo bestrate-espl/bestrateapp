@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-class AddSellerKeywordModel {
+class CreateInquiriesModel {
   final int? statusCode;
   final bool? status;
   final String? message;
   final String? errorMsg;
   final bool? isError;
 
-  AddSellerKeywordModel({
+  CreateInquiriesModel({
     this.statusCode,
     this.status,
     this.message,
@@ -15,11 +15,11 @@ class AddSellerKeywordModel {
     this.isError
   });
 
-  factory AddSellerKeywordModel.fromRawJson(String str) => AddSellerKeywordModel.fromJson(json.decode(str));
+  factory CreateInquiriesModel.fromRawJson(String str) => CreateInquiriesModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory AddSellerKeywordModel.fromJson(Map<String, dynamic> json) => AddSellerKeywordModel(
+  factory CreateInquiriesModel.fromJson(Map<String, dynamic> json) => CreateInquiriesModel(
     statusCode: json["status_code"],
     status: json["status"],
     message: json["message"],

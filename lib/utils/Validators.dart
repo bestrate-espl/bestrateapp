@@ -89,6 +89,27 @@ class Validators {
     return null;
   }
 
+  static String? validateQuantity(String? value){
+    if (value == null || value.isEmpty){
+      return 'Please enter your quantity';
+    }
+    return null;
+  }
+
+  static String? validateBudgetStart(String? value){
+    if (value == null || value.isEmpty){
+      return 'Please enter your Start Budget';
+    }
+    return null;
+  }
+
+  static String? validateBudgetEnd(String? value){
+    if (value == null || value.isEmpty){
+      return 'Please enter your End Budget';
+    }
+    return null;
+  }
+
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter your password';

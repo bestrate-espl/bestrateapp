@@ -1,13 +1,11 @@
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:bestrateapp/drawer/screen/view_inquiry_details.dart';
-import 'package:bestrateapp/models/last_inquiries_model.dart';
 import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/providers/buyer_inquiries_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/inquiries_model.dart';
 import '../../sharedpreference/SharedPreferenceHelper.dart';
 import '../../sharedpreference/sharedpreference_constant.dart';
 class Home extends StatefulWidget {
@@ -29,7 +27,7 @@ class _HomeState extends State<Home> {
       buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
       token = await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
       var user_id = int.parse(buyerId!);
-      getInquiries(token!,user_id,"Home");
+      getInquiries(token!,user_id,"Home",context);
       setState(() {});
     });
   }
@@ -281,8 +279,8 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Future<void> getInquiries(String token, int buyerId, String page) async{
+  Future<void> getInquiries(String token, int buyerId, String page, BuildContext context) async{
     final inquiriesProvider = Provider.of<BuyerInquiriesProvider>(context,listen: false);
-    await inquiriesProvider.getBuyerInquiries(token, buyerId, page);
+    await inquiriesProvider.getBuyerInquiries(token, buyerId, page,context);
   }
 }

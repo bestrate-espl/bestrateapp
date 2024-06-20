@@ -31,7 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         return Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 50.0),
+              margin: const EdgeInsets.only(top: 50.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

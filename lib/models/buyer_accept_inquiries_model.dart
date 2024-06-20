@@ -1,105 +1,105 @@
 import 'dart:convert';
 
-class SellerProfileModel {
+class BuyerAcceptInquiriesModel {
   final int? statusCode;
   final bool? status;
   final String? message;
-  final Data? data;
+  final List<AcceptedInquiry>? acceptedInquiries;
   final String? errorMsg;
   final bool? isError;
 
-  SellerProfileModel({
+  BuyerAcceptInquiriesModel({
     this.statusCode,
     this.status,
     this.message,
-    this.data,
+    this.acceptedInquiries,
     this.errorMsg,
     this.isError
   });
 
-  factory SellerProfileModel.fromRawJson(String str) => SellerProfileModel.fromJson(json.decode(str));
+  factory BuyerAcceptInquiriesModel.fromRawJson(String str) => BuyerAcceptInquiriesModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory SellerProfileModel.fromJson(Map<String, dynamic> json) => SellerProfileModel(
+  factory BuyerAcceptInquiriesModel.fromJson(Map<String, dynamic> json) => BuyerAcceptInquiriesModel(
     statusCode: json["status_code"],
     status: json["status"],
     message: json["message"],
-    data: json["data"] == null ? null : Data.fromJson(json["data"]),
+    acceptedInquiries: json["accepted_inquiries"] == null ? [] : List<AcceptedInquiry>.from(json["accepted_inquiries"]!.map((x) => AcceptedInquiry.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
     "status_code": statusCode,
     "status": status,
     "message": message,
-    "data": data?.toJson(),
+    "accepted_inquiries": acceptedInquiries == null ? [] : List<dynamic>.from(acceptedInquiries!.map((x) => x.toJson())),
   };
 }
 
-class Data {
-  final int? sellerId;
+class AcceptedInquiry {
   final String? firstName;
   final String? lastName;
-  final String? email;
   final String? mobile;
-  late final String? area;
+  final String? email;
+  final String? area;
   final String? pincode;
   final String? entity;
   final dynamic businessName;
+  final String? gst;
   final dynamic businessArea;
   final String? businessPincode;
-  final String? gst;
-  final List<String>? keywords;
+  final String? quotationFiles;
+  final String? quotedPrice;
 
-  Data({
-    this.sellerId,
+  AcceptedInquiry({
     this.firstName,
     this.lastName,
-    this.email,
     this.mobile,
+    this.email,
     this.area,
     this.pincode,
     this.entity,
     this.businessName,
+    this.gst,
     this.businessArea,
     this.businessPincode,
-    this.gst,
-    this.keywords,
+    this.quotationFiles,
+    this.quotedPrice,
   });
 
-  factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
+  factory AcceptedInquiry.fromRawJson(String str) => AcceptedInquiry.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-    sellerId: json["seller_id"],
+  factory AcceptedInquiry.fromJson(Map<String, dynamic> json) => AcceptedInquiry(
     firstName: json["first_name"],
     lastName: json["last_name"],
-    email: json["email"],
     mobile: json["mobile"],
+    email: json["email"],
     area: json["area"],
     pincode: json["pincode"],
     entity: json["entity"],
     businessName: json["business_name"],
+    gst: json["gst"],
     businessArea: json["business_area"],
     businessPincode: json["business_pincode"],
-    gst: json["gst"],
-    keywords: json["keywords"] == null ? [] : List<String>.from(json["keywords"]!.map((x) => x)),
+    quotationFiles: json["quotation_files"],
+    quotedPrice: json["quoted_price"],
   );
 
   Map<String, dynamic> toJson() => {
-    "seller_id": sellerId,
     "first_name": firstName,
     "last_name": lastName,
-    "email": email,
     "mobile": mobile,
+    "email": email,
     "area": area,
     "pincode": pincode,
     "entity": entity,
     "business_name": businessName,
+    "gst": gst,
     "business_area": businessArea,
     "business_pincode": businessPincode,
-    "gst": gst,
-    "keywords": keywords == null ? [] : List<dynamic>.from(keywords!.map((x) => x)),
+    "quotation_files": quotationFiles,
+    "quoted_price": quotedPrice,
   };
 }

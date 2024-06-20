@@ -2,11 +2,19 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'package:bestrateapp/models/buyer_accept_inquiries_model.dart';
 import 'package:bestrateapp/models/buyer_inquiries_details_model.dart';
+import 'package:bestrateapp/models/buyer_reject_inquiries_model.dart';
+import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/service/api_services.dart';
+import 'package:bestrateapp/sharedpreference/SharedPreferenceHelper.dart';
+import 'package:bestrateapp/sharedpreference/sharedpreference_constant.dart';
 import 'package:bestrateapp/utils/show_toast.dart';
+import 'package:dio/dio.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:fl_downloader/fl_downloader.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
 
 import '../models/buyer_inquiries_model.dart';
 
@@ -14,18 +22,22 @@ import '../models/buyer_inquiries_model.dart';
 class BuyerInquiriesProvider extends ChangeNotifier{
   BuyerInquiriesModel? _buyerInquiriesModel;
   BuyerInquiriesDetailsModel? _buyerInquiriesDetailsModel;
+  BuyerAcceptInquiriesModel? _acceptInquiriesModel;
+  BuyerRejectInquiriesModel? _rejectInquiriesModel;
   bool _isLoading = false;
-  String?  fileName, filePath;
-  File? file;
+  int? progress = 0;
+  StreamSubscription? progressStream;
 
 
 
   BuyerInquiriesModel? get buyerInquiriesModel => _buyerInquiriesModel;
   BuyerInquiriesDetailsModel? get buyerInquiriesDetailsModel => _buyerInquiriesDetailsModel;
+  BuyerAcceptInquiriesModel? get acceptInquiriesModel => _acceptInquiriesModel;
+  BuyerRejectInquiriesModel? get rejectInquiriesModel => _rejectInquiriesModel;
   bool get isLoading => _isLoading;
   
   
-  Future<void> getBuyerInquiries(String token, int buyerId, String page) async {
+  Future<void> getBuyerInquiries(String token, int buyerId, String page, BuildContext context) async {
     _isLoading = true;
     notifyListeners();
     try {
@@ -38,9 +50,11 @@ class BuyerInquiriesProvider extends ChangeNotifier{
           ShowToast.showToastError(_buyerInquiriesModel!.message.toString());
         }
       }else{
-        ShowToast.showToastError(_buyerInquiriesModel!.message.toString());
+        SharedPreferenceHelper.clearLoginState();
+        context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
+        ShowToast.showToastError("You have logged in difference device");
       }
-    }catch(e){
+    }catch(e) {
       ShowToast.showToastError(e.toString());
     }finally {
       _isLoading = false;
@@ -69,41 +83,65 @@ class BuyerInquiriesProvider extends ChangeNotifier{
     }
   }
 
-  // Future<void> getSendQuotation(String token, String inquiryid, String amount, String details, String filePath, String fileName) async {
-  //   _isLoading = true;
-  //   notifyListeners();
-  //   try {
-  //     _sendQuotationModel = await ApiService.getSendQuotation(token,inquiryid,amount,details,filePath, fileName);
-  //     if (_sendQuotationModel!.statusCode == 200 && _sendQuotationModel!.status == true){
-  //       ShowToast.shoToastSuccess(_sendQuotationModel!.message.toString());
-  //       clearProviderData();
-  //       notifyListeners();
-  //       log(_sendQuotationModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
-  //     }else{
-  //       ShowToast.showToastError("Something went wrong");
-  //     }
-  //   }catch(e){
-  //     ShowToast.showToastError(e.toString());
-  //   }finally {
-  //     _isLoading = false;
-  //     notifyListeners();
-  //   }
-  // }
-  Future uploadFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
-    if (result != null) {
-      file = File(result.files.single.path ?? " ");
-      fileName = file?.path.split('/').last;
-      filePath = file?.path;
+  Future<void> getBuyerAcceptInquiries(String token, int buyerId) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      _acceptInquiriesModel = await ApiService.getBuyerAcceptInquiries(token, buyerId);
+      if (_acceptInquiriesModel!.statusCode == 200 &&
+          _acceptInquiriesModel!.status == true){
+        notifyListeners();
+        log(_acceptInquiriesModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+      }else{
+        ShowToast.showToastError("Something went wrong");
+      }
+    }catch(e){
+      ShowToast.showToastError(e.toString());
+    }finally {
+      _isLoading = false;
       notifyListeners();
-
     }
   }
 
-  void clearProviderData(){
-    fileName = null;
-    filePath = null;
+  Future<void> getBuyerRejectInquiries(String token, int buyerId) async {
+    _isLoading = true;
     notifyListeners();
+    try {
+      _rejectInquiriesModel = await ApiService.getBuyerRejectInquiries(token, buyerId);
+      if (_rejectInquiriesModel!.statusCode == 200 &&
+          _rejectInquiriesModel!.status == true){
+        notifyListeners();
+        log(_rejectInquiriesModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+      }else{
+        ShowToast.showToastError("Something went wrong");
+      }
+    }catch(e){
+      ShowToast.showToastError(e.toString());
+    }finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+
+
+  void getDownload(){
+    FlDownloader.initialize();
+    progressStream = FlDownloader.progressStream.listen((event){
+      if (event.status == DownloadStatus.successful){
+          progress = event.progress;
+          if (progress == 100){
+            progress = 0;
+          }
+          ShowToast.shoToastSuccess("File downloaded successfully!!");
+
+        FlDownloader.openFile(filePath: event.filePath);
+      }else if (event.status == DownloadStatus.running){
+          progress = event.progress;
+      }else if (event.status == DownloadStatus.failed){
+        ShowToast.showToastError("Download Error!!");
+      }
+    });
   }
 
 }

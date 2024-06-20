@@ -19,9 +19,9 @@ class DioService {
   static Dio createDio() {
     var dio = Dio(BaseOptions(
       baseUrl: ConstantUrl.baseUrl,
-      receiveTimeout: const Duration(seconds: 10),
-      connectTimeout: const Duration(seconds: 10),
-      sendTimeout: const Duration(seconds: 10),
+      receiveTimeout: const Duration(seconds: 50),
+      connectTimeout: const Duration(seconds: 20),
+      sendTimeout: const Duration(seconds: 20),
     ));
 
     dio.interceptors.addAll({

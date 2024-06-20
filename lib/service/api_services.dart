@@ -1,15 +1,15 @@
-import 'package:bestrateapp/models/add_seller_keyword.dart';
+
 import 'package:bestrateapp/models/area_model.dart';
+import 'package:bestrateapp/models/buyer_accept_inquiries_model.dart';
 import 'package:bestrateapp/models/buyer_inquiries_details_model.dart';
 import 'package:bestrateapp/models/buyer_inquiries_model.dart';
-import 'package:bestrateapp/models/delete_seller_keyword.dart';
+import 'package:bestrateapp/models/buyer_reject_inquiries_model.dart';
+import 'package:bestrateapp/models/create_inquiries_model.dart';
+
 import 'package:bestrateapp/models/login_model.dart';
-import 'package:bestrateapp/models/profile_update_model.dart';
+
 import 'package:bestrateapp/models/resend_otp_model.dart';
-import 'package:bestrateapp/models/seller_inquiries_details_model.dart';
-import 'package:bestrateapp/models/seller_keywods_model.dart';
-import 'package:bestrateapp/models/seller_profile_model.dart';
-import 'package:bestrateapp/models/seller_request_keyword_model.dart';
+
 import 'package:bestrateapp/models/verify_login_otp_model.dart';
 import 'package:bestrateapp/models/verify_register_otp_model.dart';
 import 'package:bestrateapp/request_models/profile_update_request_model.dart';
@@ -282,111 +282,6 @@ class ApiService {
     }
   }
 
-  static Future<SellerProfileModel> getSellerProfile(String token, int sellerId) async {
-    late SellerProfileModel sellerProfileModel;
-    try {
-      final response = await DioService().dio.post(
-          data: {
-            "role": 3,
-            "id": sellerId,
-          },
-          ConstantUrl.get_profile,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Content-Type': 'application/json',
-            },
-          )
-      );
-
-      if (response.statusCode == 200) {
-        sellerProfileModel = SellerProfileModel.fromJson(response.data);
-        return sellerProfileModel;
-      } else {
-        return SellerProfileModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    } catch (e) {
-      return SellerProfileModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-  }
-
-
-  static Future<SellerKeywordsModel> getSellerKeywords(String token, int sellerId) async {
-    late SellerKeywordsModel sellerKeywordsModel;
-    try {
-      final response = await DioService().dio.post(
-          data: {
-            "seller_id": sellerId,
-          },
-          ConstantUrl.seller_keyword_list,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Content-Type': 'application/json',
-            },
-          )
-      );
-
-      if (response.statusCode == 200) {
-        sellerKeywordsModel = SellerKeywordsModel.fromJson(response.data);
-        return sellerKeywordsModel;
-      } else {
-        return SellerKeywordsModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    } catch (e) {
-      return SellerKeywordsModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-  }
-
-
-
-  static Future<AddSellerKeywordModel> getAddSellerKeyword(String token, int sellerId, int keywordId) async {
-    late AddSellerKeywordModel addSellerKeywordModel;
-    try {
-      final response = await DioService().dio.post(
-          data: {
-            "keyword_id": keywordId,
-            "seller_id": sellerId,
-
-          },
-          ConstantUrl.add_seller_keyword,
-          options: Options(
-            headers: {
-              'Authorization': 'Bearer $token',
-              'Content-Type': 'application/json',
-            },
-          )
-      );
-
-      if (response.statusCode == 200) {
-        addSellerKeywordModel = AddSellerKeywordModel.fromJson(response.data);
-        return addSellerKeywordModel;
-      } else {
-        return AddSellerKeywordModel(
-            errorMsg: 'Api failed with status code : ${response.statusCode}',
-            isError: true
-        );
-      }
-    } catch (e) {
-      return AddSellerKeywordModel(
-        errorMsg: 'An error occurred $e',
-        isError: true,
-      );
-    }
-  }
-
 
 
 
@@ -457,48 +352,119 @@ class ApiService {
         isError: true,
       );
     }
+
+  }
+
+  static Future<BuyerAcceptInquiriesModel> getBuyerAcceptInquiries(String token, int buyerId) async {
+    late BuyerAcceptInquiriesModel acceptInquiriesModel;
+    try {
+      final response = await DioService().dio.post(
+          data: {
+            "buyer_id": buyerId,
+
+          },
+          ConstantUrl.buyer_accepted_inquiry,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+          )
+      );
+
+      if (response.statusCode == 200) {
+        acceptInquiriesModel = BuyerAcceptInquiriesModel.fromJson(response.data);
+        return acceptInquiriesModel;
+      } else {
+        return BuyerAcceptInquiriesModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    } catch (e) {
+      return BuyerAcceptInquiriesModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+
   }
 
 
+  static Future<BuyerRejectInquiriesModel> getBuyerRejectInquiries(String token, int buyerId) async {
+    late BuyerRejectInquiriesModel rejectInquiriesModel;
+    try {
+      final response = await DioService().dio.post(
+          data: {
+            "buyer_id": buyerId,
 
+          },
+          ConstantUrl.buyer_rejected_inquiry,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+          )
+      );
 
-  // static Future<SendQuotationModel> getSendQuotation(String token, String inquiryid, String amount,
-  //     String details, String filePath, String fileName) async {
-  //   FormData data = FormData.fromMap({
-  //     "inquiryid" : inquiryid,
-  //     "amount" :  amount,
-  //     "details" : details,
-  //     "image[]" : await MultipartFile.fromFile(filePath, filename: fileName)
-  //
-  //   });
-  //   late SendQuotationModel quotationModel;
-  //   try{
-  //     final response = await DioService().dio.post(
-  //         data: data,
-  //         ConstantUrl.sendquotation,
-  //         options: Options(
-  //           headers: {
-  //             'Authorization': 'Bearer $token',
-  //             'Content-Type': 'application/json',
-  //           },
-  //         )
-  //     );
-  //
-  //     if (response.statusCode == 200){
-  //       quotationModel = SendQuotationModel.fromJson(response.data);
-  //       return quotationModel;
-  //     }else {
-  //       return SendQuotationModel(
-  //           errorMsg: 'Api failed with status code : ${response.statusCode}',
-  //           isError: true
-  //       );
-  //     }
-  //   }catch(e){
-  //     return SendQuotationModel(
-  //       errorMsg: 'An error occurred $e',
-  //       isError: true,
-  //     );
-  //   }
-  //
-  // }
+      if (response.statusCode == 200) {
+        rejectInquiriesModel = BuyerRejectInquiriesModel.fromJson(response.data);
+        return rejectInquiriesModel;
+      } else {
+        return BuyerRejectInquiriesModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    } catch (e) {
+      return BuyerRejectInquiriesModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+
+  }
+  static Future<CreateInquiriesModel> getCreateInquiries(String token, String buyerId, int keywordId, String quantity,
+      String description, String startBudget, String endBudget ,String filePath, String fileName) async {
+    FormData data = FormData.fromMap({
+      "buyer_id" : buyerId,
+      "keyword_id" :  keywordId,
+      "quantity" : quantity,
+      "description" : description,
+      "budget_start" : startBudget,
+      "budget_end" : endBudget,
+      "image[]" : await MultipartFile.fromFile(filePath, filename: fileName)
+
+    });
+    late CreateInquiriesModel createInquiriesModel;
+    try{
+      final response = await DioService().dio.post(
+          data: data,
+          ConstantUrl.create_buyer_inquiry,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+          )
+      );
+
+      if (response.statusCode == 200){
+        createInquiriesModel = CreateInquiriesModel.fromJson(response.data);
+        return createInquiriesModel;
+      }else {
+        return CreateInquiriesModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    }catch(e){
+      return CreateInquiriesModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+
+  }
 }

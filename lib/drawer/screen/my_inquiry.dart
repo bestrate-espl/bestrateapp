@@ -6,8 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/best_rate_color_constant.dart';
-import '../../models/inquiries_model.dart';
-import '../../models/last_inquiries_model.dart';
+
 import '../../page_route/route_constant.dart';
 class MyInquiry extends StatefulWidget {
   const MyInquiry({super.key});
@@ -28,7 +27,7 @@ class _MyInquiryState extends State<MyInquiry> {
       buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
       token = await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
       var user_id = int.parse(buyerId!);
-      getInquiries(token!,user_id,"");
+      getInquiries(token!,user_id,"",context);
       setState(() {});
     });
   }
@@ -159,8 +158,8 @@ class _MyInquiryState extends State<MyInquiry> {
       }
     );
   }
-  Future<void> getInquiries(String token, int buyerId, String page) async{
+  Future<void> getInquiries(String token, int buyerId, String page,BuildContext context) async{
     final inquiriesProvider = Provider.of<BuyerInquiriesProvider>(context,listen: false);
-    await inquiriesProvider.getBuyerInquiries(token, buyerId, page);
+    await inquiriesProvider.getBuyerInquiries(token, buyerId, page,context);
   }
 }

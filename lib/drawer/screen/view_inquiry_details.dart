@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constant/best_rate_color_constant.dart';
-import '../../models/inquiries_model.dart';
+
 class ViewInquiryDetails extends StatefulWidget {
   final int inquiriesId;
   const ViewInquiryDetails({super.key, required this.inquiriesId});
@@ -22,7 +22,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
 
   late TabController _tabController;
   final List<Tab> _tabs = [
-    Tab(text: "All"),
+    Tab(text: "Pending"),
     Tab(text: "Accept"),
     Tab(text: "Reject"),
   ];
@@ -184,7 +184,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                                           ),
                                                           Padding(
                                                             padding: EdgeInsets.only(top: 5),
-                                                            child: Text("${inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.budgetStart} ${"-"} "
+                                                            child: Text("₹${inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.budgetStart} ${"-"} "
                                                                 "${inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.budgetEnd}",
                                                                 style: const TextStyle(fontSize: 16,
                                                                 fontFamily: 'GTWalsheimPro',
@@ -315,7 +315,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                 controller: _tabController,
                                 children:  [
                                   TabAll(inquiriesDetailsModel: inquiriesDetailsProvider.buyerInquiriesDetailsModel),
-                                  TabAccept(inquiriesDetailsModel: inquiriesDetailsProvider.buyerInquiriesDetailsModel),
+                                  TabAccept(),
                                   TabReject()
                                 ],
                               ),
