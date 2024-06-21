@@ -78,7 +78,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                     controller: _mobileTextController,
                                     maxLines: 1,
                                     maxLength: 10,
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.number,
                                     validator: Validators.validatePhone,
                                     onChanged: (value){
 
