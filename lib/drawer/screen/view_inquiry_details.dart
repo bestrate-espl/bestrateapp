@@ -31,7 +31,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timestamp) async{
       token = await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
-      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
+      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.PROFILE_ID);
       var bId = int.parse(buyerId!);
       getInquiriesDetails(token!, bId, widget.inquiriesId);
 
@@ -87,7 +87,6 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                             Padding(
                               padding: const EdgeInsets.all(20),
                               child: Container(
-                                height: 425,
                                 decoration: BoxDecoration(
                                     color: BestRateColorConstant.cardBg,
                                     borderRadius: BorderRadius.circular(20)
@@ -239,7 +238,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                               padding: const EdgeInsets.fromLTRB(5,0,5,0),
                                               child: Container(
                                                 height: 80,
-                                                child: inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryFile != null ? ListView.builder(
+                                                child: inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryFile!.isNotEmpty ?? false ? ListView.builder(
                                                   itemCount: inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryFile?.length,
                                                   scrollDirection: Axis.horizontal,
                                                   itemBuilder: (context, index) {
@@ -259,9 +258,10 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                                     ),
                                                   );
                                                 },
-                                                ) : const SizedBox(
-                                                  height: 0,
-                                                  width: 0,
+                                                ) :
+                                                const SizedBox(
+                                                  height: 20,
+                                                  width: 100,
                                                 child: Text("No Photo's found!!"),)
                                               ),
                                             ),
@@ -314,7 +314,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                               child: TabBarView(
                                 controller: _tabController,
                                 children:  [
-                                  TabAll(inquiriesDetailsModel: inquiriesDetailsProvider.buyerInquiriesDetailsModel),
+                                  TabAll(inquiriesDetailsModel: inquiriesDetailsProvider.buyerInquiriesDetailsModel,inquiriesId: widget.inquiriesId),
                                   TabAccept(),
                                   TabReject()
                                 ],

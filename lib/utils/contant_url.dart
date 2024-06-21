@@ -17,6 +17,10 @@ class ConstantUrl {
   static const String view_buyer_inquiry = "view_buyer_inquiry";
   static const String buyer_accepted_inquiry = "buyer_accepted_inquiry";
   static const String buyer_rejected_inquiry = "buyer_rejected_inquiry";
+  static const String buyer_accept_quotation = "buyer_accept_quotation";
+  static const String buyer_reject_quotation = "buyer_reject_quotation";
   static const String create_buyer_inquiry = "create_buyer_inquiry";
+  static const String get_profile = "get_profile";
+  static const String update_buyer_profile = "update_buyer_profile";
 
 }

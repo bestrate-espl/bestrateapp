@@ -2,9 +2,11 @@
 import 'dart:async';
 import 'dart:developer';
 import 'dart:io';
+import 'package:bestrateapp/models/accept_quotation_model.dart';
 import 'package:bestrateapp/models/buyer_accept_inquiries_model.dart';
 import 'package:bestrateapp/models/buyer_inquiries_details_model.dart';
 import 'package:bestrateapp/models/buyer_reject_inquiries_model.dart';
+import 'package:bestrateapp/models/reject_quotation_model.dart';
 import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/service/api_services.dart';
 import 'package:bestrateapp/sharedpreference/SharedPreferenceHelper.dart';
@@ -24,6 +26,8 @@ class BuyerInquiriesProvider extends ChangeNotifier{
   BuyerInquiriesDetailsModel? _buyerInquiriesDetailsModel;
   BuyerAcceptInquiriesModel? _acceptInquiriesModel;
   BuyerRejectInquiriesModel? _rejectInquiriesModel;
+  AcceptQuotationModel? _acceptQuotationModel;
+  RejectQuotationModel? _rejectQuotationModel;
   bool _isLoading = false;
   int? progress = 0;
   StreamSubscription? progressStream;
@@ -34,6 +38,8 @@ class BuyerInquiriesProvider extends ChangeNotifier{
   BuyerInquiriesDetailsModel? get buyerInquiriesDetailsModel => _buyerInquiriesDetailsModel;
   BuyerAcceptInquiriesModel? get acceptInquiriesModel => _acceptInquiriesModel;
   BuyerRejectInquiriesModel? get rejectInquiriesModel => _rejectInquiriesModel;
+  AcceptQuotationModel? get acceptQuotationModel => _acceptQuotationModel;
+  RejectQuotationModel? get rejectQuotationModel => _rejectQuotationModel;
   bool get isLoading => _isLoading;
   
   
@@ -123,6 +129,47 @@ class BuyerInquiriesProvider extends ChangeNotifier{
     }
   }
 
+  Future<void> getAcceptQuotation(String token, int buyerId, int inquiriesId, int acceptInquiriesId) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      _acceptQuotationModel = await ApiService.getInquiriesAcceptQuotation(token, acceptInquiriesId);
+      if (_acceptQuotationModel!.statusCode == 200 &&
+          _acceptQuotationModel!.status == true){
+        getBuyerInquiriesDetails(token,buyerId,inquiriesId);
+        notifyListeners();
+        log(_acceptQuotationModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+      }else{
+        ShowToast.showToastError("Something went wrong");
+      }
+    }catch(e){
+      ShowToast.showToastError(e.toString());
+    }finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<void> getRejectQuotation(String token, int buyerId, int inquiriesId, int acceptInquiriesId) async {
+    _isLoading = true;
+    notifyListeners();
+    try {
+      _rejectQuotationModel = await ApiService.getInquiriesRejectQuotation(token, inquiriesId);
+      if (_rejectQuotationModel!.statusCode == 200 &&
+          _rejectQuotationModel!.status == true){
+        getBuyerInquiriesDetails(token,buyerId,inquiriesId);
+        notifyListeners();
+        log(_rejectQuotationModel!.toJson().toString() ?? '', name: "Seller Inquiries Data");
+      }else{
+        ShowToast.showToastError("Something went wrong");
+      }
+    }catch(e){
+      ShowToast.showToastError(e.toString());
+    }finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
 
 
   void getDownload(){

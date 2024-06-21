@@ -207,7 +207,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
 
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(20,10,20,0),
-                                  child:TextFormField(
+                                  child: TextFormField(
                                     controller: _mobileController,
                                     maxLength: 10,
                                     maxLines: 1,

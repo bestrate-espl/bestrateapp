@@ -25,7 +25,7 @@ class _TabAcceptState extends State<TabAccept> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timestamp) async{
       token = await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
-      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
+      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.PROFILE_ID);
       var bId = int.parse(buyerId!);
       getAcceptInquiries(token!, bId);
       setState(() {});

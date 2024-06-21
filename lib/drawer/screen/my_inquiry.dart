@@ -24,7 +24,7 @@ class _MyInquiryState extends State<MyInquiry> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       // Show alert dialog after the first frame is displayed
-      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
+      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.PROFILE_ID);
       token = await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
       var user_id = int.parse(buyerId!);
       getInquiries(token!,user_id,"",context);

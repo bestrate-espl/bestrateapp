@@ -1,4 +1,5 @@
 
+import 'package:bestrateapp/models/accept_quotation_model.dart';
 import 'package:bestrateapp/models/area_model.dart';
 import 'package:bestrateapp/models/buyer_accept_inquiries_model.dart';
 import 'package:bestrateapp/models/buyer_inquiries_details_model.dart';
@@ -7,12 +8,16 @@ import 'package:bestrateapp/models/buyer_reject_inquiries_model.dart';
 import 'package:bestrateapp/models/create_inquiries_model.dart';
 
 import 'package:bestrateapp/models/login_model.dart';
+import 'package:bestrateapp/models/profile_model.dart';
+import 'package:bestrateapp/models/reject_quotation_model.dart';
 
 import 'package:bestrateapp/models/resend_otp_model.dart';
+import 'package:bestrateapp/models/update_profile_model.dart';
 
 import 'package:bestrateapp/models/verify_login_otp_model.dart';
+import 'package:bestrateapp/models/verify_otp_model.dart';
 import 'package:bestrateapp/models/verify_register_otp_model.dart';
-import 'package:bestrateapp/request_models/profile_update_request_model.dart';
+import 'package:bestrateapp/request_models/request_update_profile_model.dart';
 import 'package:dio/dio.dart';
 
 import '../models/register_model.dart';
@@ -112,14 +117,15 @@ class ApiService {
 
   }
 
-  static Future<VerifyRegisterOtpModel> getVerifyRegisterOtp(String userId, int mobileOtp, int emailOtp) async {
-    late VerifyRegisterOtpModel verifyRegisterOtpModel;
+  static Future<VerifyOtpModel> getVerifyRegisterOtp(String userId, int mobileOtp, int emailOtp) async {
+    late VerifyOtpModel verifyOtpModel;
     try {
       final response = await DioService().dio.post(
           data: {
             "user_id": userId,
             "mobile_otp": mobileOtp,
-            "email_otp": emailOtp
+            "email_otp": emailOtp,
+            "role": 2
           },
           ConstantUrl.verify_registerotp,
           // options: Options(
@@ -131,16 +137,16 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        verifyRegisterOtpModel = VerifyRegisterOtpModel.fromJson(response.data);
-        return verifyRegisterOtpModel;
+        verifyOtpModel = VerifyOtpModel.fromJson(response.data);
+        return verifyOtpModel;
       } else {
-        return VerifyRegisterOtpModel(
+        return VerifyOtpModel(
             errorMsg: 'Api failed with status code : ${response.statusCode}',
             isError: true
         );
       }
     } catch (e) {
-      return VerifyRegisterOtpModel(
+      return VerifyOtpModel(
         errorMsg: 'An error occurred $e',
         isError: true,
       );
@@ -180,13 +186,14 @@ class ApiService {
     }
   }
 
-  static Future<VerifyLoginOtpModel> getVerifyLoginOtp(String mobileNo, int otp) async {
-    late VerifyLoginOtpModel verifyLoginOtpModel;
+  static Future<VerifyOtpModel> getVerifyLoginOtp(String mobileNo, int otp) async {
+    late VerifyOtpModel verifyOtpModel;
     try {
       final response = await DioService().dio.post(
           data: {
             "mobile": mobileNo,
             "otp": otp,
+            "role": 2
           },
           ConstantUrl.verify_loginotp,
           options: Options(
@@ -198,16 +205,16 @@ class ApiService {
       );
 
       if (response.statusCode == 200) {
-        verifyLoginOtpModel = VerifyLoginOtpModel.fromJson(response.data);
-        return verifyLoginOtpModel;
+        verifyOtpModel = VerifyOtpModel.fromJson(response.data);
+        return verifyOtpModel;
       } else {
-        return VerifyLoginOtpModel(
+        return VerifyOtpModel(
             errorMsg: 'Api failed with status code : ${response.statusCode}',
             isError: true
         );
       }
     } catch (e) {
-      return VerifyLoginOtpModel(
+      return VerifyOtpModel(
         errorMsg: 'An error occurred $e',
         isError: true,
       );
@@ -283,8 +290,71 @@ class ApiService {
   }
 
 
+  static Future<AcceptQuotationModel> getInquiriesAcceptQuotation(String token, int inquiriesId) async {
+    late AcceptQuotationModel acceptQuotationModel;
+    try {
+      final response = await DioService().dio.post(
+          data: {
+            "inquiry_id": inquiriesId,
+          },
+          ConstantUrl.buyer_accept_quotation,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+          )
+      );
 
+      if (response.statusCode == 200) {
+        acceptQuotationModel = AcceptQuotationModel.fromJson(response.data);
+        return acceptQuotationModel;
+      } else {
+        return AcceptQuotationModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    } catch (e) {
+      return AcceptQuotationModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+  }
 
+  static Future<RejectQuotationModel> getInquiriesRejectQuotation(String token, int inquiriesId) async {
+    late RejectQuotationModel rejectQuotationModel;
+    try {
+      final response = await DioService().dio.post(
+          data: {
+            "inquiry_id": inquiriesId,
+          },
+          ConstantUrl.buyer_reject_quotation,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/x-www-form-urlencoded',
+            },
+          )
+      );
+
+      if (response.statusCode == 200) {
+        rejectQuotationModel = RejectQuotationModel.fromJson(response.data);
+        return rejectQuotationModel;
+      } else {
+        return RejectQuotationModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    } catch (e) {
+      return RejectQuotationModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+  }
 
   static Future<ResendOtpModel> getResendOtpMobile(int mobile) async {
     late ResendOtpModel resendOtpModel;
@@ -461,6 +531,74 @@ class ApiService {
       }
     }catch(e){
       return CreateInquiriesModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+
+  }
+
+  static Future<ProfileModel> getProfile(String token, int buyerId) async {
+    late ProfileModel profileModel;
+    try {
+      final response = await DioService().dio.post(
+          data: {
+            "role": "2",
+            "id": buyerId,
+
+          },
+          ConstantUrl.get_profile,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+          )
+      );
+
+      if (response.statusCode == 200) {
+        profileModel = ProfileModel.fromJson(response.data);
+        return profileModel;
+      } else {
+        return ProfileModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    } catch (e) {
+      return ProfileModel(
+        errorMsg: 'An error occurred $e',
+        isError: true,
+      );
+    }
+
+  }
+
+  static Future<UpdateProfileModel> getUpdateProfile(String token, RequestUpdateProfileModel requestUpdateProfile) async {
+    late UpdateProfileModel updateProfileModel;
+    try {
+      final response = await DioService().dio.post(
+          data: requestUpdateProfile.toJson(),
+          ConstantUrl.update_buyer_profile,
+          options: Options(
+            headers: {
+              'Authorization': 'Bearer $token',
+              'Content-Type': 'application/json',
+            },
+          )
+      );
+
+      if (response.statusCode == 200) {
+        updateProfileModel = UpdateProfileModel.fromJson(response.data);
+        return updateProfileModel;
+      } else {
+        return UpdateProfileModel(
+            errorMsg: 'Api failed with status code : ${response.statusCode}',
+            isError: true
+        );
+      }
+    } catch (e) {
+      return UpdateProfileModel(
         errorMsg: 'An error occurred $e',
         isError: true,
       );

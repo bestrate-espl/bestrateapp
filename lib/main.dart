@@ -2,6 +2,7 @@ import 'package:bestrateapp/page_route/route_config.dart';
 import 'package:bestrateapp/providers/create_inquiries_provider.dart';
 import 'package:bestrateapp/providers/on_boarding_provider.dart';
 import 'package:bestrateapp/providers/login_provider.dart';
+import 'package:bestrateapp/providers/profile_provider.dart';
 import 'package:bestrateapp/providers/registration_area_provider%20.dart';
 import 'package:bestrateapp/providers/registration_provider.dart';
 import 'package:bestrateapp/providers/resend_otp_provider.dart';
@@ -52,6 +53,9 @@ class MyApp extends StatelessWidget {
       ),
       ChangeNotifierProvider(
           create: (context) => CreateInquiriesProvider()
+      ),
+      ChangeNotifierProvider(
+          create: (context) => ProfileProvider()
       ),
     ],
       builder: (context, child){

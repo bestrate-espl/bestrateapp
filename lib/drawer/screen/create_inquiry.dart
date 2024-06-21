@@ -35,7 +35,7 @@ class _CreateInquiryState extends State<CreateInquiry> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       // Show alert dialog after the first frame is displayed
-      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
+      buyerId = await SharedPreferenceHelper.getData(SharedPreferenceConstant.PROFILE_ID);
       token = await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
       setState(() {});
     });

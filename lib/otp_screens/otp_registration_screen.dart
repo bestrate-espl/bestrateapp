@@ -283,8 +283,8 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
   Future<void> getVerifyRegisterOtp(String userId, int mobileOtp, int emailOtp) async {
     final verifyRegisterOtpProvider = Provider.of<VerifyRegisterOtpProvider>(context, listen: false);
     await verifyRegisterOtpProvider.getVerifyRegisterOtp(userId, mobileOtp, emailOtp);
-    if (verifyRegisterOtpProvider.verifyRegisterOtpModel!.statusCode == 200 &&
-        verifyRegisterOtpProvider.verifyRegisterOtpModel!.status == true){
+    if (verifyRegisterOtpProvider.verifyOtpModel!.statusCode == 200 &&
+        verifyRegisterOtpProvider.verifyOtpModel!.status == true){
       SharedPreferenceHelper.saveLoginState(true);
       context.goNamed(MyApplicationRouteConstant.DASHBOARD_SCREEN);
     }

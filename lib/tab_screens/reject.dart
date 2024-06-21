@@ -23,7 +23,7 @@ class _TabRejectState extends State<TabReject> {
       token =
       await SharedPreferenceHelper.getData(SharedPreferenceConstant.USER_TOKEN);
       buyerId =
-      await SharedPreferenceHelper.getData(SharedPreferenceConstant.BUYER_ID);
+      await SharedPreferenceHelper.getData(SharedPreferenceConstant.PROFILE_ID);
       var bId = int.parse(buyerId!);
       getRejectInquiries(token!, bId);
       setState(() {});

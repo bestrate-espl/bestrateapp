@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 
+import 'package:bestrateapp/models/verify_otp_model.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../models/login_model.dart';
@@ -8,17 +9,17 @@ import '../models/verify_login_otp_model.dart';
 import '../service/api_services.dart';
 
 import '../sharedpreference/SharedPreferenceHelper.dart';
-import '../utils/sharedpreference_constant.dart';
+import '../sharedpreference/sharedpreference_constant.dart';
 import '../utils/show_toast.dart';
 
 class LoginProvider extends ChangeNotifier{
   LoginModel? _loginModel;
+  VerifyOtpModel? _verifyOtpModel;
   bool _isLoading = false;
-  VerifyLoginOtpModel? _verifyLoginOtpModel;
 
 
   LoginModel? get loginModel => _loginModel;
-  VerifyLoginOtpModel? get verifyLoginOtpModel => _verifyLoginOtpModel;
+  VerifyOtpModel? get verifyOtpModel => _verifyOtpModel;
   bool get isLoading => _isLoading;
 
 
@@ -50,19 +51,19 @@ class LoginProvider extends ChangeNotifier{
     _isLoading = true;
     notifyListeners();
     try{
-      _verifyLoginOtpModel = await ApiService.getVerifyLoginOtp(mobileNo, otp);
-      if (_verifyLoginOtpModel!.statusCode == 200 && _verifyLoginOtpModel!.status == true){
-        ShowToast.shoToastSuccess(_verifyLoginOtpModel!.message.toString());
-        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_ID, _verifyLoginOtpModel!.data!.userid.toString());
-        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_NAME, "${_verifyLoginOtpModel!.data!.firstName}${" "}${_verifyLoginOtpModel!.data!.lastName}");
-        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_EMAIL, _verifyLoginOtpModel!.data!.email.toString());
-        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_TOKEN, _verifyLoginOtpModel!.token.toString());
-        SharedPreferenceHelper.saveData(SharedPreferenceConstant.BUYER_ID, _verifyLoginOtpModel!.data!.buyerId.toString());
-        log(_verifyLoginOtpModel!.toJson().toString() ?? '', name: "Business List");
+      _verifyOtpModel = await ApiService.getVerifyLoginOtp(mobileNo, otp);
+      if (_verifyOtpModel!.statusCode == 200 && _verifyOtpModel!.status == true){
+        ShowToast.shoToastSuccess(_verifyOtpModel!.message.toString());
+        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_ID, _verifyOtpModel!.data!.userid.toString());
+        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_NAME, "${_verifyOtpModel!.data!.firstName}${" "}${_verifyOtpModel!.data!.lastName}");
+        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_EMAIL, _verifyOtpModel!.data!.email.toString());
+        SharedPreferenceHelper.saveData(SharedPreferenceConstant.USER_TOKEN, _verifyOtpModel!.token.toString());
+        SharedPreferenceHelper.saveData(SharedPreferenceConstant.PROFILE_ID, _verifyOtpModel!.data!.profileId.toString());
+        log(_verifyOtpModel!.toJson().toString() ?? '', name: "Business List");
         notifyListeners();
 
       }else{
-        ShowToast.showToastError(_verifyLoginOtpModel!.message.toString());
+        ShowToast.showToastError(_verifyOtpModel!.message.toString());
       }
     }catch(e){
       ShowToast.showToastError(e.toString());

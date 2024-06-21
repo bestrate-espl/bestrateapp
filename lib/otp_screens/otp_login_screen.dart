@@ -193,8 +193,8 @@ class _OTPScreenState extends State<OTPScreen> {
   Future<void> getVerifyLoginOtp(String mobileNo, int otp) async {
     final verifyLoginOtpProvider = Provider.of<LoginProvider>(context, listen: false);
     await verifyLoginOtpProvider.getVerifyLoginOtp(mobileNo, otp);
-    if (verifyLoginOtpProvider.verifyLoginOtpModel!.statusCode == 200 &&
-        verifyLoginOtpProvider.verifyLoginOtpModel!.status == true){
+    if (verifyLoginOtpProvider.verifyOtpModel!.statusCode == 200 &&
+        verifyLoginOtpProvider.verifyOtpModel!.status == true){
       SharedPreferenceHelper.saveLoginState(true);
       context.goNamed(MyApplicationRouteConstant.DASHBOARD_SCREEN);
     }
