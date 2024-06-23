@@ -504,7 +504,7 @@ class ApiService {
       "description" : description,
       "budget_start" : startBudget,
       "budget_end" : endBudget,
-      "image[]" : await MultipartFile.fromFile(filePath, filename: fileName)
+      "image" : await MultipartFile.fromFile(filePath, filename: fileName)
 
     });
     late CreateInquiriesModel createInquiriesModel;
