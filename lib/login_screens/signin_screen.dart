@@ -1,6 +1,7 @@
 import 'package:bestrateapp/otp_screens/otp_login_screen.dart';
 import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/registration_screens/registration_screen.dart';
+import 'package:bestrateapp/request_models/otp_registration_verify_data.dart';
 import 'package:bestrateapp/utils/Validators.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -202,9 +203,21 @@ class _SignInScreenState extends State<SignInScreen> {
   Future<void> getLogin(String mobileNo) async{
     final loginProvider = Provider.of<LoginProvider>(context, listen: false);
     await loginProvider.getLogin(mobileNo);
-    if (loginProvider.loginModel!.statusCode == 200 && loginProvider.loginModel!.status == true){
-      context.goNamed(MyApplicationRouteConstant.OTP_SIGNIN_SCREEN);
+      if (loginProvider.loginModel!.statusCode == 200 && loginProvider.loginModel!.status == true){
+        if (loginProvider.loginModel?.isVerfied == true){
+        context.goNamed(MyApplicationRouteConstant.OTP_SIGNIN_SCREEN);
+      }else{
+          final data = OtpRegistrationVerifyData(
+            userId: loginProvider.loginModel?.data?.userId ?? 0,
+            mobileNo: loginProvider.loginModel?.data?.mobile ?? "",
+            mobileOtp: loginProvider.loginModel?.data?.mobileOtp ?? "",
+            emailId: loginProvider.loginModel?.data?.email ?? "",
+            emailOtp: loginProvider.loginModel?.data?.emailOtp ?? " ",
+          );
+          context.goNamed(MyApplicationRouteConstant.OTP_REGISTRATION_SCREEN, extra: data);
+        }
     }
+
   }
   Future<bool> _onBackPressed(BuildContext context) {
     return showDialog(

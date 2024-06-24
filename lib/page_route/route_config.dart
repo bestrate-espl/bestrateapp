@@ -10,6 +10,7 @@ import 'package:bestrateapp/otp_screens/otp_login_screen.dart';
 import 'package:bestrateapp/otp_screens/otp_registration_screen.dart';
 import 'package:bestrateapp/page_route/route_constant.dart';
 import 'package:bestrateapp/registration_screens/registration_screen.dart';
+import 'package:bestrateapp/request_models/otp_registration_verify_data.dart';
 import 'package:bestrateapp/splas_screens/splase_sereen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -66,8 +67,13 @@ class MyApplicationRouter{
           name: MyApplicationRouteConstant.OTP_REGISTRATION_SCREEN,
           path: "/otp_registration_screen",
           builder: (context, state){
+            final OtpRegistrationVerifyData data = state.extra as OtpRegistrationVerifyData;
             return OtpRegistrationScreen(
-                registerModel: state.extra as RegisterModel
+              userId: data.userId,
+              mobileNo: data.mobileNo,
+              mobileOtp: data.mobileOtp,
+              emailId: data.emailId,
+              emailOtp: data.emailOtp,
             );
           }
       ),

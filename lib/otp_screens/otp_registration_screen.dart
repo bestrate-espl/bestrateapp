@@ -11,8 +11,10 @@ import '../providers/verify_register_otp_provider.dart';
 import '../sharedpreference/SharedPreferenceHelper.dart';
 import '../utils/show_toast.dart';
 class OtpRegistrationScreen extends StatefulWidget {
-  final RegisterModel registerModel;
-  const OtpRegistrationScreen({super.key, required this.registerModel});
+  final String  mobileNo,mobileOtp, emailId, emailOtp;
+  final int userId;
+  const OtpRegistrationScreen({super.key, required this.userId, required this.mobileNo,
+    required this.mobileOtp, required this.emailId, required this.emailOtp});
 
   @override
   State<OtpRegistrationScreen> createState() => _OtpRegistrationScreenState();
@@ -22,8 +24,10 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
   final TextEditingController _controllerMobile = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
 
+
   @override
   Widget build(BuildContext context) {
+
     return Consumer<ResendOtpProvider>(builder: (context,resendOtpProvider,_) {
         return Consumer<VerifyRegisterOtpProvider>(builder: (context,verifyOtpProvider,_) {
             return Stack(
@@ -84,7 +88,7 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                                                 color: BestRateColorConstant.darkBlack),)
                                         ),
                                         Padding(padding: EdgeInsets.only(top: 2),
-                                            child: Text("+ ${widget.registerModel.mobileNumber ?? ""}",style: const TextStyle(fontSize: 16,
+                                            child: Text("+91 ${widget.mobileNo}",style: const TextStyle(fontSize: 16,
                                                 fontFamily: 'GTWalsheimPro',
                                                 fontWeight: FontWeight.w400,
                                                 color: BestRateColorConstant.darkBlack),)
@@ -125,7 +129,8 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                                                   color: BestRateColorConstant.darkBlack),),
                                               GestureDetector(
                                                 onTap: (){
-                                                  getResendOtpMobile(widget.registerModel.mobileNumber ?? 0);
+                                                  var mobile_no = int.parse(widget.mobileNo);
+                                                  getResendOtpMobile(mobile_no);
                                                 },
                                                 child: const Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
                                                     fontWeight: FontWeight.w700,
@@ -162,7 +167,7 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                                                 color: BestRateColorConstant.darkBlack),)
                                         ),
                                         Padding(padding: EdgeInsets.only(top: 2),
-                                            child: Text(widget.registerModel.email?? "",style: const TextStyle(fontSize: 16,
+                                            child: Text(widget.emailId,style: const TextStyle(fontSize: 16,
                                                 fontFamily: 'GTWalsheimPro',
                                                 fontWeight: FontWeight.w400,
                                                 color: BestRateColorConstant.darkBlack),)
@@ -203,7 +208,7 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
                                                   color: BestRateColorConstant.darkBlack),),
                                               GestureDetector(
                                                 onTap: (){
-                                                  getResendOtpEmail(widget.registerModel.email ?? "");
+                                                  getResendOtpEmail(widget.emailId);
                                                 },
                                                 child: const Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
                                                     fontWeight: FontWeight.w700,
@@ -223,14 +228,14 @@ class _OtpRegistrationScreenState extends State<OtpRegistrationScreen> {
 
                                   child: ElevatedButton(
                                     onPressed: (){
-                                      if (_controllerMobile.text.isEmpty ||_controllerMobile.text != widget.registerModel.mobileOtp){
+                                      if (_controllerMobile.text.isEmpty ||_controllerMobile.text != widget.mobileOtp){
                                         ShowToast.showToastError("Please enter valid mobile otp");
-                                      }else if (_controllerEmail.text.isEmpty ||_controllerEmail.text != widget.registerModel.emailOtp){
+                                      }else if (_controllerEmail.text.isEmpty ||_controllerEmail.text != widget.emailOtp){
                                         ShowToast.showToastError("Please enter valid email otp");
                                       }else{
                                         var mobileOtp = int.parse(_controllerMobile.text);
                                         var emailOtp = int.parse(_controllerEmail.text);
-                                        getVerifyRegisterOtp(widget.registerModel.userId.toString(),mobileOtp,emailOtp);
+                                        getVerifyRegisterOtp(widget.userId.toString(),mobileOtp,emailOtp);
                                       }
                                       // Navigator.push(context, MaterialPageRoute(builder: (context){
                                       //   return DashboardScreen();

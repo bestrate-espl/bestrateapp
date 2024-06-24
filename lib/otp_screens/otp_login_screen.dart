@@ -85,8 +85,8 @@ class _OTPScreenState extends State<OTPScreen> {
                                       fontWeight: FontWeight.w400,
                                       color: BestRateColorConstant.darkBlack),)
                               ),
-                              const Padding(padding: EdgeInsets.all(0),
-                                  child: Text('+91 1234567890',style: TextStyle(fontSize: 16,
+                              Padding(padding: const EdgeInsets.all(0),
+                                  child: Text("+91 $userMobile",style: const TextStyle(fontSize: 16,
                                       fontFamily: 'GTWalsheimPro',
                                       fontWeight: FontWeight.w400,
                                       color: BestRateColorConstant.darkBlack),)

@@ -17,6 +17,7 @@ import 'package:provider/provider.dart';
 
 import '../constant/best_rate_color_constant.dart';
 import '../controller/registration_controller.dart';
+import '../request_models/otp_registration_verify_data.dart';
 
 class BuyerInformationScreen extends StatefulWidget {
   const BuyerInformationScreen({super.key});
@@ -789,7 +790,17 @@ class _BusinessDetailsState extends State<BusinessDetails> {
     final _registerProvider = Provider.of<RegistrationProvider>(context, listen: false);
     await _registerProvider.getRegister();
     if (_registerProvider.registerModel!.statusCode == 200 && _registerProvider.registerModel!.status == true){
-      context.goNamed(MyApplicationRouteConstant.OTP_REGISTRATION_SCREEN, extra: _registerProvider.registerModel);
+      final data = OtpRegistrationVerifyData(
+        userId: _registerProvider.registerModel?.userId ?? 0,
+        mobileNo: _registerProvider.registerModel?.mobileNumber.toString() ?? "",
+        mobileOtp: _registerProvider.registerModel?.mobileOtp ?? "",
+        emailId: _registerProvider.registerModel?.email ?? "",
+        emailOtp: _registerProvider.registerModel?.emailOtp ?? " ",
+      );
+      context.goNamed(MyApplicationRouteConstant.OTP_REGISTRATION_SCREEN, extra: data);
+    }else if (_registerProvider.registerModel!.isRegistered == true &&
+        _registerProvider.registerModel!.isVerified == true){
+      context.goNamed(MyApplicationRouteConstant.SIGNIN_SCREEN);
     }
   }
 }
