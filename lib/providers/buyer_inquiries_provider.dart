@@ -55,7 +55,7 @@ class BuyerInquiriesProvider extends ChangeNotifier{
         }else{
           ShowToast.showToastError(_buyerInquiriesModel!.message.toString());
         }
-      }else{
+      }else if(_buyerInquiriesModel?.statusCode != 500 && _buyerInquiriesModel!.status != false){
         SharedPreferenceHelper.clearLoginState();
         context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
         ShowToast.showToastError("You have logged in difference device");

@@ -1,8 +1,10 @@
 
 import 'package:bestrateapp/constant/best_rate_color_constant.dart';
 import 'package:bestrateapp/page_route/route_constant.dart';
+import 'package:bestrateapp/utils/internet_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
@@ -41,148 +43,169 @@ class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
-    return Consumer<ResendOtpProvider>(builder: (context,resendOtpProvider,_) {
-        return Consumer<LoginProvider>(builder: (context,loginProvider,_) {
-            return Stack(
-              children: [
-                Scaffold(
-                  backgroundColor: Colors.white,
-                  body: Column(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 50.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              GestureDetector(
-                                onTap: (){
-                                  context.goNamed(MyApplicationRouteConstant.SIGNIN_SCREEN);
-                                },
-                                child: Padding(padding: EdgeInsets.all(10),
-                                  child: Image.asset('assets/images/arrow_back_image.png'),
-                                ),
-                              ),
-                              const Expanded(child: Center(
-                                child: Padding(padding: EdgeInsets.all(10),
-                                   child: Text("OTP Authentication", style: TextStyle(fontSize: 20,
-                                       fontFamily: 'GTWalsheimPro',
-                                       fontWeight: FontWeight.w700,
-                                       color: BestRateColorConstant.darkBlack),),),
-                                ),
-                              )
-
-                            ],
-                          ),
-
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 30.0),
-                          child: Column(
-                            children: [
-                              const Padding(padding: EdgeInsets.all(10),
-                                  child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,
-                                      fontFamily: 'GTWalsheimPro',
-                                      fontWeight: FontWeight.w400,
-                                      color: BestRateColorConstant.darkBlack),)
-                              ),
-                              Padding(padding: const EdgeInsets.all(0),
-                                  child: Text("+91 $userMobile",style: const TextStyle(fontSize: 16,
-                                      fontFamily: 'GTWalsheimPro',
-                                      fontWeight: FontWeight.w400,
-                                      color: BestRateColorConstant.darkBlack),)
-                              ),
-                              Padding(padding: EdgeInsets.fromLTRB(50,40,50,0),
-                               child: PinCodeTextField(
-                                appContext: context,
-                                controller: _controllerMobile,
-                                length: 4,
-                                cursorHeight: 19,
-                                enableActiveFill: true,
-                                keyboardType: TextInputType.number,
-                                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                                pinTheme: PinTheme(
-                                  shape: PinCodeFieldShape.box,
-                                  fieldWidth: 50,
-                                  inactiveColor: Colors.grey,
-                                  selectedColor: Color(0xFF01B576),
-                                  activeFillColor: Colors.white,
-                                  selectedFillColor: Colors.white,
-                                  inactiveFillColor: Colors.white,
-                                  borderWidth: 1,
-                                  borderRadius: BorderRadius.circular(8)
-                                ),
-                                onChanged: (String value) {
-                                  print(value);
-                                },
-
-                              ),),
-                              Padding(padding: EdgeInsets.all(10),
+    return GetBuilder<InternetController>(
+      builder: (tx) {
+        return Consumer<ResendOtpProvider>(builder: (context,resendOtpProvider,_) {
+            return Consumer<LoginProvider>(builder: (context,loginProvider,_) {
+                return tx.isConnectedToInternet ? Stack(
+                  children: [
+                    Scaffold(
+                      backgroundColor: Colors.white,
+                      body: Column(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.only(top: 50.0),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text("Don't received the code? ", style: TextStyle(fontSize: 16,
-                                      fontFamily: 'GTWalsheimPro',
-                                      fontWeight: FontWeight.w400,
-                                      color: BestRateColorConstant.darkBlack),),
                                   GestureDetector(
                                     onTap: (){
-                                      getResendOtpMobile(mobile!);
+                                      context.goNamed(MyApplicationRouteConstant.SIGNIN_SCREEN);
                                     },
-                                    child: const Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
-                                        fontWeight: FontWeight.w700,
-                                        color: BestRateColorConstant.darkBlack),),
-                                  )
-                                ],
-                              ),),
-                              Padding(padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
-                                child: ConstrainedBox(
-                                  constraints: const BoxConstraints.tightFor(width: 350, height: 55),
-
-                                  child: ElevatedButton(
-                                    onPressed: (){
-                                      if (_controllerMobile.text.isEmpty || _controllerMobile.text != userOtp){
-                                        ShowToast.showToastError("Please enter valid OTP");
-                                      }else{
-                                        var otp = int.parse(_controllerMobile.text);
-                                        getVerifyLoginOtp(userMobile.toString(), otp);
-                                      }
-
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Color(0xFF7258DB),
-                                      foregroundColor: Colors.white,
-                                      textStyle: TextStyle(fontSize: 16),
-                                      elevation: 8,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(10)
-                                      ),
-
+                                    child: Padding(padding: EdgeInsets.all(10),
+                                      child: Image.asset('assets/images/arrow_back_image.png'),
                                     ),
-                                    child: const Text("Submit", style: TextStyle(fontSize: 18,
-                                        fontFamily: 'GTWalsheimPro',
-                                        fontWeight: FontWeight.w500,
-                                        color: Colors.white),),
                                   ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                  ),
+                                  const Expanded(child: Center(
+                                    child: Padding(padding: EdgeInsets.all(10),
+                                       child: Text("OTP Authentication", style: TextStyle(fontSize: 20,
+                                           fontFamily: 'GTWalsheimPro',
+                                           fontWeight: FontWeight.w700,
+                                           color: BestRateColorConstant.darkBlack),),),
+                                    ),
+                                  )
 
-                ),
-                if (loginProvider.isLoading || resendOtpProvider.isLoading)
-                  Container(
-                    // width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    color: Colors.black.withOpacity(0.5),
-                    child: const Center(
-                      child: CircularProgressIndicator(),
+                                ],
+                              ),
+
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 30.0),
+                              child: Column(
+                                children: [
+                                  const Padding(padding: EdgeInsets.all(10),
+                                      child: Text('An authentication code has been sent to',style: TextStyle(fontSize: 16,
+                                          fontFamily: 'GTWalsheimPro',
+                                          fontWeight: FontWeight.w400,
+                                          color: BestRateColorConstant.darkBlack),)
+                                  ),
+                                  Padding(padding: const EdgeInsets.all(0),
+                                      child: Text("+91 $userMobile",style: const TextStyle(fontSize: 16,
+                                          fontFamily: 'GTWalsheimPro',
+                                          fontWeight: FontWeight.w400,
+                                          color: BestRateColorConstant.darkBlack),)
+                                  ),
+                                  Padding(padding: EdgeInsets.fromLTRB(50,40,50,0),
+                                   child: PinCodeTextField(
+                                    appContext: context,
+                                    controller: _controllerMobile,
+                                    length: 4,
+                                    cursorHeight: 19,
+                                    enableActiveFill: true,
+                                    keyboardType: TextInputType.number,
+                                    textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                    inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                    pinTheme: PinTheme(
+                                      shape: PinCodeFieldShape.box,
+                                      fieldWidth: 50,
+                                      inactiveColor: Colors.grey,
+                                      selectedColor: Color(0xFF01B576),
+                                      activeFillColor: Colors.white,
+                                      selectedFillColor: Colors.white,
+                                      inactiveFillColor: Colors.white,
+                                      borderWidth: 1,
+                                      borderRadius: BorderRadius.circular(8)
+                                    ),
+                                    onChanged: (String value) {
+                                      print(value);
+                                    },
+
+                                  ),),
+                                  Padding(padding: EdgeInsets.all(10),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text("Don't received the code? ", style: TextStyle(fontSize: 16,
+                                          fontFamily: 'GTWalsheimPro',
+                                          fontWeight: FontWeight.w400,
+                                          color: BestRateColorConstant.darkBlack),),
+                                      GestureDetector(
+                                        onTap: (){
+                                          getResendOtpMobile(mobile!);
+                                        },
+                                        child: const Text("Resend", style: TextStyle(fontSize: 16, fontFamily: 'GTWalsheimPro',
+                                            fontWeight: FontWeight.w700,
+                                            color: BestRateColorConstant.darkBlack),),
+                                      )
+                                    ],
+                                  ),),
+                                  Padding(padding: const EdgeInsets.fromLTRB(0, 40, 0, 0),
+                                    child: ConstrainedBox(
+                                      constraints: const BoxConstraints.tightFor(width: 350, height: 55),
+
+                                      child: ElevatedButton(
+                                        onPressed: (){
+                                          if (_controllerMobile.text.isEmpty || _controllerMobile.text != userOtp){
+                                            ShowToast.showToastError("Please enter valid OTP");
+                                          }else{
+                                            var otp = int.parse(_controllerMobile.text);
+                                            getVerifyLoginOtp(userMobile.toString(), otp);
+                                          }
+
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Color(0xFF7258DB),
+                                          foregroundColor: Colors.white,
+                                          textStyle: TextStyle(fontSize: 16),
+                                          elevation: 8,
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(10)
+                                          ),
+
+                                        ),
+                                        child: const Text("Submit", style: TextStyle(fontSize: 18,
+                                            fontFamily: 'GTWalsheimPro',
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.white),),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                      ),
+
                     ),
-                  ),
-              ],
+                    if (loginProvider.isLoading || resendOtpProvider.isLoading)
+                      Container(
+                        // width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        color: Colors.black.withOpacity(0.5),
+                        child: const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                  ],
+                ):Container(
+                    height: MediaQuery.of(context).size.height,
+                    width:  MediaQuery.of(context).size.width,
+                    color: Colors.white.withOpacity(0.5),
+                    child: const Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Icon(Icons.wifi_off,
+                            size: 50,
+                            color:  Colors.red,),
+                          Text("You are not connected to the internet",
+                            style: TextStyle(fontSize: 16, color: Colors.black),)
+                        ],
+                      ),
+                    )
+                );
+              }
             );
           }
         );

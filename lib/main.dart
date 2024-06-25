@@ -10,14 +10,21 @@ import 'package:bestrateapp/providers/search_business_provider.dart';
 import 'package:bestrateapp/providers/buyer_inquiries_provider.dart';
 
 import 'package:bestrateapp/providers/verify_register_otp_provider.dart';
+import 'package:bestrateapp/utils/internet_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:provider/provider.dart';
 // import 'package:webview_flutter/webview_flutter.dart';
 
 import 'best_rate_web_view.dart';
 
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+  Get.put(InternetController(), permanent: true);
+}
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
