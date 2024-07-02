@@ -184,7 +184,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,),
                   SizedBox(height: 6),
                   Text(pagesName[index]['name'] ?? "",style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 12,
                     fontFamily: 'GTWalsheimPro',
                     fontWeight: isSelected ? FontWeight.w500 : FontWeight.w500,color: isSelected ? Colors.white : BestRateColorConstant.darkBlack,))
                 ],

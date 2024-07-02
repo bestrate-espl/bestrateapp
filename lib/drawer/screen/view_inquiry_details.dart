@@ -106,7 +106,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                                   fontFamily: 'GTWalsheimPro',
                                                   fontWeight: FontWeight.w700,
                                                   color: BestRateColorConstant.darkBlack),),
-                                              const Text("04-12-2023, 11:50AM", style: TextStyle(fontSize: 12,
+                                              Text('${inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryDate ?? ''} ${inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryTime ?? ''} ', style: const TextStyle(fontSize: 12,
                                                   fontFamily: 'GTWalsheimPro',
                                                   fontWeight: FontWeight.w400,
                                                   color: BestRateColorConstant.darkBlack),),
@@ -250,14 +250,16 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                                         padding: const EdgeInsets.all(3),
                                                         child: Container(
                                                           height: 80,
-                                                          width: 80,
+                                                          width: MediaQuery.sizeOf(context).width,
                                                           decoration: BoxDecoration(
                                                               color: Colors.white,
                                                               borderRadius: BorderRadius.circular(16)
                                                           ),
                                                           child: Padding(
                                                             padding: const EdgeInsets.all(8.0),
-                                                            child: Image.network(inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryFile?[index].file ?? ""),
+                                                            child: Image.network(inquiriesDetailsProvider.buyerInquiriesDetailsModel?.inquiry?.inquiryFile?[index].file ?? '',
+                                                              // fit: BoxFit.fill,
+                                                            ),
                                                           ),
                                                         ),
                                                       );

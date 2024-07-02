@@ -53,7 +53,7 @@ class Inquiry {
   final String? inquiryStatus;
   final String? inquiryDate;
   final dynamic inquiryTime;
-  final List<dynamic>? inquiryFile;
+  final List<InquiryFile>? inquiryFile;
 
   Inquiry({
     this.keyword,
@@ -80,7 +80,7 @@ class Inquiry {
     inquiryStatus: json["inquiry_status"],
     inquiryDate: json["inquiry_date"],
     inquiryTime: json["inquiry_time"],
-    inquiryFile: json["inquiry_file"] == null ? [] : List<dynamic>.from(json["inquiry_file"]!.map((x) => x)),
+    inquiryFile: json["inquiry_file"] == null ? [] : List<InquiryFile>.from(json["inquiry_file"]!.map((x) => InquiryFile.fromJson(x))),
   );
 
   Map<String, dynamic> toJson() => {
@@ -137,5 +137,29 @@ class Pending {
     "business_name": businessName,
     "quotation_files": quotationFiles,
     "quoted_price": quotedPrice,
+  };
+}
+
+class InquiryFile {
+  final int? id;
+  final String? file;
+
+  InquiryFile({
+    this.id,
+    this.file,
+  });
+
+  factory InquiryFile.fromRawJson(String str) => InquiryFile.fromJson(json.decode(str));
+
+  String toRawJson() => json.encode(toJson());
+
+  factory InquiryFile.fromJson(Map<String, dynamic> json) => InquiryFile(
+    id: json["id"],
+    file: json["file"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "file": file,
   };
 }

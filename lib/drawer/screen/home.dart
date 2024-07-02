@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
-                                    width: 180,
+                                    width: MediaQuery.sizeOf(context).width / 2.4,
                                     height: 110,
                                     decoration: BoxDecoration(
                                         color: BestRateColorConstant.green,
@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
                                           child: Column(
                                             children: [
                                               Container(
-                                                width: 100,
+                                                width: MediaQuery.sizeOf(context).width / 4.2,
                                                   child: const Text("Inquiries Generated", style: TextStyle(
                                                       fontSize: 14,
                                                       fontFamily: 'GTWalsheimPro',
@@ -81,7 +81,7 @@ class _HomeState extends State<Home> {
                                               Padding(
                                                 padding: const EdgeInsets.only(top: 5),
                                                 child: Container(
-                                                    width: 100,
+                                                    width: MediaQuery.sizeOf(context).width / 4.2,
                                                     child:  Text((inquiriesProvider.buyerInquiriesModel?.totalInquiries ?? 0).toString(),
                                                       style: const TextStyle(
                                                         fontSize: 34,
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
 
                                   ),
                                   Container(
-                                    width: 180,
+                                    width: MediaQuery.sizeOf(context).width / 2.4,
                                     height: 110,
                                     decoration: BoxDecoration(
                                         color: BestRateColorConstant.green,
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                                           child: Column(
                                             children: [
                                               Container(
-                                                  width: 70,
+                                                  width: MediaQuery.sizeOf(context).width / 4.2,
                                                   child: const Text("Latest Bids", style: TextStyle(
                                                       fontSize: 14,
                                                       fontFamily: 'GTWalsheimPro',
@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
                                               Padding(
                                                 padding: const EdgeInsets.only(top: 5),
                                                 child: Container(
-                                                    width: 100,
+                                                    width: MediaQuery.sizeOf(context).width / 4.2,
                                                     child: Padding(
                                                       padding: const EdgeInsets.only(left: 10),
                                                       child: Text((inquiriesProvider.buyerInquiriesModel?.latestBids ?? 0).toString(),
@@ -141,9 +141,9 @@ class _HomeState extends State<Home> {
                                             ],
                                           ),
                                         ),
-                                        Padding(padding: EdgeInsets.all(0),
+                                        Padding(padding: const EdgeInsets.all(0),
                                           child: Container(
-                                            width: 60,
+                                            width: MediaQuery.sizeOf(context).width / 6.7,
                                             child: Image.asset('assets/images/lab_profile.png'),
                                           ),)
                                       ],

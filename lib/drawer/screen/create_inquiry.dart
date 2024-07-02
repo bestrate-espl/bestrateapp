@@ -164,7 +164,7 @@ class _CreateInquiryState extends State<CreateInquiry> {
                             alignment: Alignment.centerLeft,
                             child: Padding(
                               padding: EdgeInsets.only(left: 20),
-                              child: Text("Quality", style: TextStyle(fontSize: 18,
+                              child: Text("Quantity", style: TextStyle(fontSize: 18,
                                   fontFamily: 'GTWalsheimPro',
                                   fontWeight: FontWeight.w500,
                                   color: BestRateColorConstant.darkBlack),
@@ -324,8 +324,8 @@ class _CreateInquiryState extends State<CreateInquiry> {
                         Row(
                           children: [
                             SizedBox(
-                              width: 332,
-                              child: Padding(padding: EdgeInsets.fromLTRB(20, 10, 5, 0),
+                              width: MediaQuery.sizeOf(context).width / 1.22,//332,
+                              child: Padding(padding: const EdgeInsets.fromLTRB(20, 10, 5, 0),
                                   child: Container(
                                       height: 50,
                                       decoration: BoxDecoration(
@@ -366,8 +366,10 @@ class _CreateInquiryState extends State<CreateInquiry> {
                                if (_formKey.currentState!.validate()){
                                  if (keywordDataId == 0){
                                    ShowToast.showToastError("Please select product!!");
+                                 }else if (double.tryParse(_startBudgetTextController.text)! > double.tryParse(_endBudgetTextController.text)!) {
+                                   ShowToast.showToastError("Budget End should not be less than Budget Start");
                                  }else if (createInquiriesProvider.filePath == null){
-                                   ShowToast.showToastError("Please select .pdf file");
+                                   ShowToast.showToastError("Please Upload a file");
                                  }else{
                                    print("Id : $keywordDataId");
                                    getCreateInquiries(token!, buyerId!, keywordDataId!,
@@ -390,10 +392,11 @@ class _CreateInquiryState extends State<CreateInquiry> {
                                 ),
 
                               ),
-                              child: const Text("Create Inquiries"),
+                              child: const Text("Create Inquiry"),
                             ),
                           ),
                         ),
+                        const SizedBox(height: 10,)
                       ],
                     ),
                     if (createInquiriesProvider.isLoading)
