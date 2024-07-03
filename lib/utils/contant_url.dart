@@ -7,7 +7,7 @@ class ConstantUrl {
   static const String baseUrl = "http://www.bestrate.encureit.com/api/";
   static const String getArea = "get_area";
   static const String search_keywords = "search_keywords";
-  static const String register = "register";
+  static const String register = "register_new";
   static const String verify_registerotp = "verify_registerotp";
   static const String login = "login";
   static const String verify_loginotp = "verify_loginotp";
