@@ -321,7 +321,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                               width: 1.0, // Border width
                                             ),
                                           ),
-                                          child: DropdownButtonHideUnderline(
+                                          child: areaProvider.areaData?.data != null ? DropdownButtonHideUnderline(
                                             child: DropdownButton2<AreaData>(
                                               isExpanded: true,
                                               hint: const Text(
@@ -333,8 +333,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                                   fontWeight: FontWeight.w500,
                                                 ),
                                               ),
-                                              items: areaProvider
-                                                  .areaData?.data!
+                                              items: areaProvider.areaData?.data!
                                                   .map((AreaData areaData) =>
                                                       DropdownMenuItem<
                                                           AreaData>(
@@ -433,7 +432,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                                 }
                                               },
                                             ),
-                                          ),
+                                          ): Text("No data found")
                                         ),
                                       ),
                                       const Padding(
@@ -487,7 +486,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 30, 20, 20),
                                         child: ConstrainedBox(
-                                          constraints: BoxConstraints.tightFor(
+                                          constraints: const BoxConstraints.tightFor(
                                               width: 370, height: 55),
                                           child: ElevatedButton(
                                             onPressed: () {

@@ -250,9 +250,7 @@ class _ViewInquiryDetailsState extends State<ViewInquiryDetails> with SingleTick
                                                         padding: const EdgeInsets.all(3),
                                                         child: Container(
                                                           height: 80,
-                                                          width: MediaQuery.sizeOf(context).width,
                                                           decoration: BoxDecoration(
-                                                              color: Colors.white,
                                                               borderRadius: BorderRadius.circular(16)
                                                           ),
                                                           child: Padding(

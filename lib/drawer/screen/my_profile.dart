@@ -276,7 +276,7 @@ class _MyProfileState extends State<MyProfile> {
                                             width: 1.0, // Border width
                                           ),
                                         ),
-                                        child: DropdownButtonHideUnderline(
+                                        child: areaProvider.areaData?.data != null ? DropdownButtonHideUnderline(
                                           child: DropdownButton2<AreaData>(
                                             isExpanded: true,
                                             hint:  Text(
@@ -358,7 +358,7 @@ class _MyProfileState extends State<MyProfile> {
                                               }
                                             },
                                           ),
-                                        ),
+                                        ): Text("No data found")
                                       ),
                                     ),
 
@@ -425,7 +425,7 @@ class _MyProfileState extends State<MyProfile> {
                                         children: [
                                           // Radio button for Option 1
                                           Radio(
-                                            value: 'yes',
+                                            value: 'Yes',
                                             groupValue: selectedValue,
                                             onChanged: (value) {
                                               setState(() {
@@ -442,7 +442,7 @@ class _MyProfileState extends State<MyProfile> {
 
                                           // Radio button for Option 2
                                           Radio(
-                                            value: 'no',
+                                            value: 'No',
                                             groupValue: selectedValue,
                                             onChanged: (value) {
                                               setState(() {
@@ -462,95 +462,105 @@ class _MyProfileState extends State<MyProfile> {
                                         ],
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(20,20,20,0),
-                                      child: Row(
+                                    Visibility(
+                                      visible: selectedValue == "No"
+                                        ? false
+                                        : true,
+                                      child: Column(
                                         children: [
-                                          Container(
-                                              child: Text("Business Name", style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontFamily: 'GTWalsheimPro',
-                                                  fontWeight: FontWeight.w500,
-                                                  color: BestRateColorConstant.darkBlack),)),
-                                        ],
-                                      ),
-                                    ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(20,20,20,0),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                    child: const Text("Business Name", style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontFamily: 'GTWalsheimPro',
+                                                        fontWeight: FontWeight.w500,
+                                                        color: BestRateColorConstant.darkBlack),)),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: TextFormField(
+                                                    controller: _businessNameController,
+                                                    maxLines: 1,
+                                                    keyboardType: TextInputType.text,
+                                                    validator: Validators.validateBusinessName,
+                                                    onChanged: (value){
 
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(20,10,20,0),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: _businessNameController,
-                                              maxLines: 1,
-                                              keyboardType: TextInputType.text,
-                                              validator: Validators.validateBusinessName,
-                                              onChanged: (value){
+                                                    },
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Enter',
+                                                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                                                      hintStyle: const TextStyle(
+                                                          fontFamily: 'GTWalsheimPro',
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Colors.grey),
+                                                      border: OutlineInputBorder(
+                                                        borderRadius: BorderRadius.circular(8.0),
+                                                      ),
 
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText: 'Enter',
-                                                contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                                                hintStyle: const TextStyle(
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+
+                                          const Padding(
+                                            padding: EdgeInsets.fromLTRB(20,30,20,0),
+                                            child: Row(
+                                              children: [
+                                                Text("GSTIN", style: TextStyle(
+                                                    fontSize: 18,
                                                     fontFamily: 'GTWalsheimPro',
                                                     fontWeight: FontWeight.w500,
-                                                    color: Colors.grey),
-                                                border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.circular(8.0),
-                                                ),
+                                                    color: BestRateColorConstant.darkBlack),),
+                                              ],
+                                            ),
+                                          ),
 
-                                              ),
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(20,10,20,0),
+                                            child: Row(
+                                              children: [
+                                                Expanded(
+                                                  child: TextFormField(
+                                                    controller: _gstinController,
+                                                    maxLines: 1,
+                                                    maxLength: 15,
+                                                    keyboardType: TextInputType.text,
+                                                    validator: Validators.validateGSTIN,
+                                                    onChanged: (value){
+
+                                                    },
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Enter',
+                                                      contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                                                      hintStyle: const TextStyle(
+                                                          fontFamily: 'GTWalsheimPro',
+                                                          fontWeight: FontWeight.w500,
+                                                          color: Colors.grey),
+                                                      border: OutlineInputBorder(
+                                                        borderRadius: BorderRadius.circular(8.0),
+                                                      ),
+
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ],
                                       ),
                                     ),
 
-                                    const Padding(
-                                      padding: EdgeInsets.fromLTRB(20,30,20,0),
-                                      child: Row(
-                                        children: [
-                                          Text("GSTIN", style: TextStyle(
-                                              fontSize: 18,
-                                              fontFamily: 'GTWalsheimPro',
-                                              fontWeight: FontWeight.w500,
-                                              color: BestRateColorConstant.darkBlack),),
-                                        ],
-                                      ),
-                                    ),
 
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(20,10,20,0),
-                                      child: Row(
-                                        children: [
-                                          Expanded(
-                                            child: TextFormField(
-                                              controller: _gstinController,
-                                              maxLines: 1,
-                                              maxLength: 15,
-                                              keyboardType: TextInputType.text,
-                                              validator: Validators.validateGSTIN,
-                                              onChanged: (value){
-
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText: 'Enter',
-                                                contentPadding: const EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
-                                                hintStyle: const TextStyle(
-                                                    fontFamily: 'GTWalsheimPro',
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Colors.grey),
-                                                border: OutlineInputBorder(
-                                                  borderRadius: BorderRadius.circular(8.0),
-                                                ),
-
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(20,30,20,20),
                                       child: ConstrainedBox(
