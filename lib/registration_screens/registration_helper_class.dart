@@ -11,6 +11,7 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:go_router/go_router.dart';
@@ -143,6 +144,9 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                                 controller:
                                                     _firstNameController,
                                                 maxLines: 1,
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                                ],
                                                 validator: Validators
                                                     .validateFirstName,
                                                 keyboardType:
@@ -175,6 +179,9 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                                 keyboardType:
                                                     TextInputType.text,
                                                 maxLines: 1,
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                                ],
                                                 validator:
                                                     Validators.validateLastName,
                                                 onChanged: (value) {
@@ -268,6 +275,9 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                           controller: _mobileController,
                                           maxLength: 10,
                                           maxLines: 1,
+                                          inputFormatters: [
+                                            FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                          ],
                                           keyboardType: TextInputType.number,
                                           validator: Validators.validatePhone,
                                           onChanged: (value) {
@@ -309,131 +319,155 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 10, 20, 0),
                                         child: Container(
-                                          padding: const EdgeInsets.all(8.0),
-                                          height: 48,
-                                          width: double.infinity,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            border: Border.all(
-                                              color: Colors.grey,
-                                              // Border color
-                                              width: 1.0, // Border width
-                                            ),
-                                          ),
-                                          child: areaProvider.areaData?.data != null ? DropdownButtonHideUnderline(
-                                            child: DropdownButton2<AreaData>(
-                                              isExpanded: true,
-                                              hint: const Text(
-                                                'Select Area',
-                                                style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: Colors.grey,
-                                                  fontFamily: 'GTWalsheimPro',
-                                                  fontWeight: FontWeight.w500,
-                                                ),
+                                            padding: const EdgeInsets.all(8.0),
+                                            height: 48,
+                                            width: double.infinity,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              border: Border.all(
+                                                color: Colors.grey,
+                                                // Border color
+                                                width: 1.0, // Border width
                                               ),
-                                              items: areaProvider.areaData?.data!
-                                                  .map((AreaData areaData) =>
-                                                      DropdownMenuItem<
-                                                          AreaData>(
-                                                        value: areaData,
-                                                        child: Text(
-                                                          areaData.location
-                                                              .toString(),
-                                                          style:
-                                                              const TextStyle(
-                                                            fontSize: 14,
+                                            ),
+                                            child: areaProvider
+                                                        .areaData?.data !=
+                                                    null
+                                                ? DropdownButtonHideUnderline(
+                                                    child: DropdownButton2<
+                                                        AreaData>(
+                                                      isExpanded: true,
+                                                      hint: const Text(
+                                                        'Select Area',
+                                                        style: TextStyle(
+                                                          fontSize: 14,
+                                                          color: Colors.grey,
+                                                          fontFamily:
+                                                              'GTWalsheimPro',
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                        ),
+                                                      ),
+                                                      items: areaProvider
+                                                          .areaData?.data!
+                                                          .map((AreaData
+                                                                  areaData) =>
+                                                              DropdownMenuItem<
+                                                                  AreaData>(
+                                                                value: areaData,
+                                                                child: Text(
+                                                                  areaData
+                                                                      .location
+                                                                      .toString(),
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontSize:
+                                                                        14,
+                                                                  ),
+                                                                ),
+                                                              ))
+                                                          .toList(),
+                                                      value: _selectedValue,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          _selectedValue =
+                                                              value;
+                                                        });
+                                                        registerProvider
+                                                                .requestModel
+                                                                .area =
+                                                            _selectedValue
+                                                                ?.location;
+                                                      },
+                                                      buttonStyleData:
+                                                          const ButtonStyleData(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal: 16),
+                                                        height: 40,
+                                                        width: 200,
+                                                      ),
+                                                      dropdownStyleData:
+                                                          const DropdownStyleData(
+                                                        maxHeight: 200,
+                                                      ),
+                                                      menuItemStyleData:
+                                                          const MenuItemStyleData(
+                                                        height: 40,
+                                                      ),
+                                                      dropdownSearchData:
+                                                          DropdownSearchData(
+                                                        searchController:
+                                                            textEditingController,
+                                                        searchInnerWidgetHeight:
+                                                            50,
+                                                        searchInnerWidget:
+                                                            Container(
+                                                          height: 50,
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                            top: 8,
+                                                            bottom: 4,
+                                                            right: 8,
+                                                            left: 8,
+                                                          ),
+                                                          child: TextFormField(
+                                                            expands: true,
+                                                            maxLines: null,
+                                                            controller:
+                                                                textEditingController,
+                                                            decoration:
+                                                                InputDecoration(
+                                                              isDense: true,
+                                                              contentPadding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                horizontal:
+                                                                    10.0,
+                                                                vertical: 5,
+                                                              ),
+                                                              hintText:
+                                                                  'Search for an item...',
+                                                              hintStyle:
+                                                                  const TextStyle(
+                                                                fontSize: 12,
+                                                                fontFamily:
+                                                                    'GTWalsheimPro',
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                              ),
+                                                              border:
+                                                                  OutlineInputBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            8),
+                                                              ),
+                                                            ),
                                                           ),
                                                         ),
-                                                      ))
-                                                  .toList(),
-                                              value: _selectedValue,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  _selectedValue = value;
-                                                });
-                                                registerProvider
-                                                        .requestModel.area =
-                                                    _selectedValue?.location;
-                                              },
-                                              buttonStyleData:
-                                                  const ButtonStyleData(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16),
-                                                height: 40,
-                                                width: 200,
-                                              ),
-                                              dropdownStyleData:
-                                                  const DropdownStyleData(
-                                                maxHeight: 200,
-                                              ),
-                                              menuItemStyleData:
-                                                  const MenuItemStyleData(
-                                                height: 40,
-                                              ),
-                                              dropdownSearchData:
-                                                  DropdownSearchData(
-                                                searchController:
-                                                    textEditingController,
-                                                searchInnerWidgetHeight: 50,
-                                                searchInnerWidget: Container(
-                                                  height: 50,
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                    top: 8,
-                                                    bottom: 4,
-                                                    right: 8,
-                                                    left: 8,
-                                                  ),
-                                                  child: TextFormField(
-                                                    expands: true,
-                                                    maxLines: null,
-                                                    controller:
-                                                        textEditingController,
-                                                    decoration: InputDecoration(
-                                                      isDense: true,
-                                                      contentPadding:
-                                                          const EdgeInsets
-                                                              .symmetric(
-                                                        horizontal: 10.0,
-                                                        vertical: 5,
+                                                        searchMatchFn: (item,
+                                                            searchValue) {
+                                                          return item.value
+                                                              .toString()
+                                                              .contains(
+                                                                  searchValue);
+                                                        },
                                                       ),
-                                                      hintText:
-                                                          'Search for an item...',
-                                                      hintStyle:
-                                                          const TextStyle(
-                                                        fontSize: 12,
-                                                        fontFamily:
-                                                            'GTWalsheimPro',
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                      ),
-                                                      border:
-                                                          OutlineInputBorder(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8),
-                                                      ),
+                                                      //This to clear the search value when you close the menu
+                                                      onMenuStateChange:
+                                                          (isOpen) {
+                                                        if (!isOpen) {
+                                                          textEditingController
+                                                              .clear();
+                                                        }
+                                                      },
                                                     ),
-                                                  ),
-                                                ),
-                                                searchMatchFn:
-                                                    (item, searchValue) {
-                                                  return item.value
-                                                      .toString()
-                                                      .contains(searchValue);
-                                                },
-                                              ),
-                                              //This to clear the search value when you close the menu
-                                              onMenuStateChange: (isOpen) {
-                                                if (!isOpen) {
-                                                  textEditingController.clear();
-                                                }
-                                              },
-                                            ),
-                                          ): Text("No data found")
-                                        ),
+                                                  )
+                                                : Text("No data found")),
                                       ),
                                       const Padding(
                                         padding:
@@ -459,6 +493,9 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                             controller: _pinController,
                                             maxLength: 6,
                                             maxLines: 1,
+                                            inputFormatters: [
+                                              FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                            ],
                                             keyboardType: TextInputType.number,
                                             validator: Validators.validatePin,
                                             onChanged: (value) {
@@ -486,8 +523,9 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                         padding: const EdgeInsets.fromLTRB(
                                             20, 30, 20, 20),
                                         child: ConstrainedBox(
-                                          constraints: const BoxConstraints.tightFor(
-                                              width: 370, height: 55),
+                                          constraints:
+                                              const BoxConstraints.tightFor(
+                                                  width: 370, height: 55),
                                           child: ElevatedButton(
                                             onPressed: () {
                                               if (_formKey.currentState!
@@ -752,6 +790,9 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                                                 controller:
                                                     _businessNameController,
                                                 maxLines: 1,
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                                ],
                                                 keyboardType:
                                                     TextInputType.text,
                                                 validator: Validators
@@ -809,6 +850,9 @@ class _BusinessDetailsState extends State<BusinessDetails> {
                                                 controller: _gstinController,
                                                 maxLines: 1,
                                                 maxLength: 15,
+                                                inputFormatters: [
+                                                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+                                                ],
                                                 keyboardType:
                                                     TextInputType.text,
                                                 validator:

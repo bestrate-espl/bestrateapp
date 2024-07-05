@@ -5,6 +5,7 @@ import 'package:bestrateapp/utils/internet_controller.dart';
 import 'package:bestrateapp/utils/show_toast.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
@@ -118,6 +119,9 @@ class _MyProfileState extends State<MyProfile> {
                                             child: TextFormField(
                                               controller: _firstNameController,
                                               maxLines: 1,
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                              ],
                                               validator: Validators.validateFirstName,
                                               keyboardType: TextInputType.text,
                                               onChanged: (value){
@@ -139,6 +143,9 @@ class _MyProfileState extends State<MyProfile> {
                                             child: TextFormField(
                                               controller: _lastNameController,
                                               maxLines: 1,
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                              ],
                                               validator: Validators.validateLastName,
                                               keyboardType: TextInputType.text,
                                               onChanged: (value){
@@ -226,6 +233,9 @@ class _MyProfileState extends State<MyProfile> {
                                               controller: _mobileController,
                                               maxLength: 10,
                                               maxLines: 1,
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                              ],
                                               keyboardType: TextInputType.number,
                                               validator: Validators.validatePhone,
                                               onChanged: (value){
@@ -384,6 +394,9 @@ class _MyProfileState extends State<MyProfile> {
                                               controller: _pinController,
                                               maxLength: 6,
                                               maxLines: 1,
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                                              ],
                                               keyboardType: TextInputType.number,
                                               validator: Validators.validatePin,
                                               onChanged: (value){
@@ -489,6 +502,9 @@ class _MyProfileState extends State<MyProfile> {
                                                   child: TextFormField(
                                                     controller: _businessNameController,
                                                     maxLines: 1,
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z]')),
+                                                    ],
                                                     keyboardType: TextInputType.text,
                                                     validator: Validators.validateBusinessName,
                                                     onChanged: (value){
@@ -534,6 +550,9 @@ class _MyProfileState extends State<MyProfile> {
                                                     controller: _gstinController,
                                                     maxLines: 1,
                                                     maxLength: 15,
+                                                    inputFormatters: [
+                                                      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9]')),
+                                                    ],
                                                     keyboardType: TextInputType.text,
                                                     validator: Validators.validateGSTIN,
                                                     onChanged: (value){

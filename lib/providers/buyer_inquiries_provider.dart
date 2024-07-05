@@ -58,7 +58,7 @@ class BuyerInquiriesProvider extends ChangeNotifier{
       }else if(_buyerInquiriesModel?.statusCode != 500 && _buyerInquiriesModel!.status != false){
         SharedPreferenceHelper.clearLoginState();
         context.goNamed(MyApplicationRouteConstant.ON_BOARDING);
-        ShowToast.showToastError("You have logged in difference device");
+        ShowToast.showToastError("Session Expired!!");
       }
     }catch(e) {
       ShowToast.showToastError(e.toString());

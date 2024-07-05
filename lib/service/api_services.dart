@@ -159,6 +159,7 @@ class ApiService {
       final response = await DioService().dio.post(
           data: {
             "mobile": mobileNo,
+            "role": 2
           },
           ConstantUrl.login,
           options: Options(
