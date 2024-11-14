@@ -331,8 +331,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                                 width: 1.0, // Border width
                                               ),
                                             ),
-                                            child: areaProvider
-                                                        .areaData?.data !=
+                                            child: areaProvider.areaData?.data !=
                                                     null
                                                 ? DropdownButtonHideUnderline(
                                                     child: DropdownButton2<
@@ -528,8 +527,7 @@ class _BuyerInformationScreenState extends State<BuyerInformationScreen> {
                                                   width: 370, height: 55),
                                           child: ElevatedButton(
                                             onPressed: () {
-                                              if (_formKey.currentState!
-                                                  .validate()) {
+                                              if (_formKey.currentState!.validate()) {
                                                 if (_selectedValue == null) {
                                                   ShowToast.showToastError(
                                                       "Please select area");
